@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anglicisms in Russian and Kazakh — Research Project 2026</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playfair Display, Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FAF6F0',
+                        sand: '#E4DFD3',
+                        sandDark: '#D2C9B8',
+                        navy: '#132232',
+                        navyLight: '#1E344B',
+                        rust: '#B84A24',
+                        rustLight: '#D45D34',
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'Georgia', 'serif'],
+                        sans: ['"Inter"', 'system-ui', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FAF6F0;
+            color: #132232;
+            font-family: 'Inter', system-ui, sans-serif;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, .font-editorial {
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+        /* Slide 2 Pill Styles */
+        .pill-tag {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            padding: 0.55rem 1.35rem;
+            font-weight: 500;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            cursor: pointer;
+            user-select: none;
+            box-shadow: 0 2px 6px rgba(19, 34, 50, 0.06);
+        }
+        .pill-tag:hover {
+            transform: translateY(-4px) scale(1.04) !important;
+            box-shadow: 0 10px 20px rgba(19, 34, 50, 0.14);
+            z-index: 20;
+        }
+        .pill-navy {
+            background-color: #132232;
+            color: #FAF6F0;
+            border: 2px solid #132232;
+        }
+        .pill-rust {
+            background-color: #B84A24;
+            color: #FAF6F0;
+            border: 2px solid #B84A24;
+        }
+        .pill-sand {
+            background-color: #E4DFD3;
+            color: #132232;
+            border: 2px solid #E4DFD3;
+        }
+        .pill-outline {
+            background-color: #FAF6F0;
+            color: #132232;
+            border: 2px solid #132232;
+        }
+        /* Flashcard 3D Flip */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF6F0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D2C9B8;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B84A24;
+        }
+        /* Route connector animation */
+        .route-card-active {
+            border-color: #B84A24 !important;
+            box-shadow: 0 16px 32px -8px rgba(184, 74, 36, 0.18);
+        }
+        /* Language Purity Highlight */
+        .anglicism-term {
+            transition: all 0.3s ease;
+            border-radius: 6px;
+            padding: 0 4px;
+        }
+        body.purity-mode .anglicism-term {
+            background-color: #B84A24;
+            color: #FAF6F0;
+            font-weight: 600;
+            padding: 1px 8px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-rust selection:text-white">
+
+    <!-- STICKY TOP HEADER & CLEAN TAB NAVIGATION -->
+    <header class="sticky top-0 z-50 bg-cream/95 backdrop-blur-md border-b border-sand transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap items-center justify-between py-3 gap-4">
+                
+                <!-- Clean Brand Mark (Removed RU & KZ badge) -->
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-navy text-cream flex items-center justify-center font-serif font-bold text-lg shadow-sm border-2 border-rust">
+                        A<span class="text-rust text-xs">26</span>
+                    </div>
+                    <span class="font-serif font-bold text-xl leading-none text-navy">Anglicisms</span>
+                </div>
+
+                <!-- 3 ORGANIZED MAIN TABS IN ENGLISH -->
+                <nav class="flex items-center bg-sand/75 p-1 rounded-2xl border border-sandDark/60 gap-1" aria-label="Main Tabs">
+                    <button onclick="switchMainTab('tab-presentation')" id="btn-tab-presentation" class="tab-nav-btn flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-navy text-cream shadow-sm">
+                        <i data-lucide="presentation" class="w-4 h-4 text-rustLight"></i>
+                        <span>1. Presentation</span>
+                    </button>
+                    <button onclick="switchMainTab('tab-diary')" id="btn-tab-diary" class="tab-nav-btn flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-navy hover:bg-cream/70">
+                        <i data-lucide="map" class="w-4 h-4 text-rust"></i>
+                        <span>2. Research Diary (12 Days)</span>
+                    </button>
+                    <button onclick="switchMainTab('tab-dashboard')" id="btn-tab-dashboard" class="tab-nav-btn flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all text-navy hover:bg-cream/70">
+                        <i data-lucide="layout-dashboard" class="w-4 h-4 text-rust"></i>
+                        <span>3. Trainer &amp; Dashboard</span>
+                    </button>
+                </nav>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 1: PRESENTATION (SLIDES FIRST, DESCRIPTION OF ANGLICISMS SECOND)   -->
+    <!-- ===================================================================== -->
+    <main id="tab-presentation" class="main-tab-content flex-grow">
+        
+        <!-- 1. STANDALONE 14-SLIDE PRESENTATION VIEWER WINDOW (FIRST - EXPANDED WIDESCREEN) -->
+        <section id="presentation-player-section" class="py-6 sm:py-8 bg-cream border-b border-sand">
+            <div class="w-full max-w-[1240px] mx-auto px-3 sm:px-6 lg:px-10">
+
+                <!-- Sleek Large Presentation Window Frame -->
+                <div id="presentation-window-frame" class="rounded-[2rem] bg-cream border-2 border-navy shadow-2xl overflow-hidden flex flex-col transition-all">
+                    
+                    <!-- Window Top Bar -->
+                    <div class="px-5 sm:px-8 py-4 bg-navy text-cream flex items-center justify-between gap-4 border-b border-navyLight">
+                        <div class="flex items-center gap-3.5 min-w-0">
+                            <div class="flex items-center gap-2 shrink-0">
+                                <span class="w-3.5 h-3.5 rounded-full bg-rust inline-block"></span>
+                                <span class="w-3.5 h-3.5 rounded-full bg-sandDark inline-block"></span>
+                                <span class="w-3.5 h-3.5 rounded-full bg-cream/40 inline-block"></span>
+                            </div>
+                            <span id="slideTagBadge" class="px-4 py-1.5 rounded-full bg-rust text-cream text-xs sm:text-sm font-bold uppercase tracking-wider shrink-0">
+                                SLIDE 1 · COVER
+                            </span>
+                            <span id="slideSubtitleTop" class="text-sm sm:text-base font-medium text-cream/80 truncate hidden md:inline">
+                                Anglicisms in Russian and Kazakh.pdf
+                            </span>
+                        </div>
+
+                        <div class="flex items-center gap-3 shrink-0">
+                            <span id="slideCounterBadge" class="px-4 py-1.5 rounded-full bg-cream/10 text-cream font-bold text-xs sm:text-sm">
+                                1 / 14
+                            </span>
+                            <button onclick="togglePresentationFullscreen()" class="px-3.5 py-1.5 rounded-xl bg-cream/10 hover:bg-rust text-cream transition-all flex items-center gap-1.5 text-xs sm:text-sm font-semibold" title="Toggle Fullscreen">
+                                <i data-lucide="maximize-2" class="w-4 h-4"></i>
+                                <span class="hidden sm:inline">Fullscreen</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Large Widescreen Slide Viewport with Left / Right Overlay Arrow Buttons -->
+                    <div class="relative flex-grow flex items-center justify-center min-h-[560px] sm:min-h-[600px] lg:min-h-[650px] bg-cream select-none">
+                        
+                        <!-- Left Arrow Button -->
+                        <button onclick="changeSlide(-1)" aria-label="Previous slide"
+                            class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full bg-navy/90 text-cream hover:bg-rust hover:scale-105 active:scale-95 transition-all shadow-xl flex items-center justify-center border-2 border-cream/25">
+                            <i data-lucide="chevron-left" class="w-7 h-7 sm:w-8 sm:h-8"></i>
+                        </button>
+
+                        <!-- Dynamic Widescreen Slide Stage -->
+                        <div id="slideStageContent" class="w-full max-w-5xl mx-auto px-16 sm:px-20 lg:px-24 py-8 sm:py-10">
+                            <!-- Rendered dynamically by JS -->
+                        </div>
+
+                        <!-- Right Arrow Button -->
+                        <button onclick="changeSlide(1)" aria-label="Next slide"
+                            class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full bg-navy/90 text-cream hover:bg-rust hover:scale-105 active:scale-95 transition-all shadow-xl flex items-center justify-center border-2 border-cream/25">
+                            <i data-lucide="chevron-right" class="w-7 h-7 sm:w-8 sm:h-8"></i>
+                        </button>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div class="w-full h-2 bg-sand">
+                        <div id="slideProgressBar" class="h-full bg-rust transition-all duration-300" style="width: 7.14%"></div>
+                    </div>
+
+                    <!-- Window Bottom Control Dock -->
+                    <div class="px-5 sm:px-8 py-4 bg-sand/70 border-t border-sandDark/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <!-- Slide Number Pills (1..14) -->
+                        <div id="slide-dots-bar" class="flex items-center gap-2 flex-wrap justify-center py-0.5">
+                            <!-- Populated by JS -->
+                        </div>
+
+                        <!-- Bottom Prev / Next Arrows -->
+                        <div class="flex items-center gap-2.5 shrink-0">
+                            <button onclick="changeSlide(-1)" class="px-4 py-2 rounded-xl bg-cream border-2 border-navy/20 hover:border-navy text-navy font-bold text-xs sm:text-sm flex items-center gap-1.5 transition-all">
+                                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                                Prev Slide
+                            </button>
+                            <button onclick="changeSlide(1)" class="px-5 py-2 rounded-xl bg-navy hover:bg-rust text-cream font-bold text-xs sm:text-sm flex items-center gap-1.5 transition-all shadow-sm">
+                                Next Slide
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 2. DESCRIPTION OF ANGLICISMS & INTERACTIVE 20-PILL INSPECTOR (SECOND) -->
+        <section class="relative overflow-hidden py-10 lg:py-14 bg-gradient-to-b from-cream via-cream to-sand/30">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Left Column: Concise English Overview of Anglicisms -->
+                    <div class="lg:col-span-6 space-y-5">
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sand border border-sandDark text-navy text-xs font-bold tracking-wider uppercase">
+                            <span class="w-2 h-2 rounded-full bg-rust"></span>
+                            Anglicisms Overview · Theory &amp; The Problem
+                        </div>
+
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-navy leading-tight tracking-tight">
+                            Anglicisms in <span class="text-rust italic">Russian and Kazakh</span>
+                        </h2>
+
+                        <p class="text-base text-navy/80 leading-relaxed">
+                            How globalization and the IT sector are changing the way we speak. An <b>anglicism</b> is a word or phrase borrowed from English into another language. We hear and use words like <b>like, deadline, cringe, feedback, content</b> every day, often without even noticing that they are English.
+                        </p>
+
+                        <!-- 3 Core Mechanisms Mini-Cards -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <div class="p-3.5 rounded-2xl bg-white border border-sandDark shadow-sm">
+                                <div class="text-xs font-bold uppercase text-rust mb-1">1. Loanword</div>
+                                <p class="text-xs text-navy/80">Taken straight from English, keeping form and meaning: <b>computer, business, online</b>.</p>
+                            </div>
+                            <div class="p-3.5 rounded-2xl bg-white border border-sandDark shadow-sm">
+                                <div class="text-xs font-bold uppercase text-rust mb-1">2. Calque</div>
+                                <p class="text-xs text-navy/80">Translated part by part into a native phrase: <b>brainstorm → mozgovoy shturm</b>.</p>
+                            </div>
+                            <div class="p-3.5 rounded-2xl bg-white border border-sandDark shadow-sm">
+                                <div class="text-xs font-bold uppercase text-rust mb-1">3. Code-switching</div>
+                                <p class="text-xs text-navy/80">Mixing languages inside one sentence: <i>"Skin' feedback"</i>, <i>"Bul óte cringe"</i>.</p>
+                            </div>
+                        </div>
+
+                        <!-- Main Research Question Box -->
+                        <div class="p-4 sm:p-5 rounded-2xl bg-white border-2 border-navy shadow-sm">
+                            <div class="text-xs font-bold uppercase tracking-wider text-rust mb-1">Main Research Question (The Problem)</div>
+                            <p class="font-serif text-lg sm:text-xl font-bold text-navy">
+                                “Do anglicisms enrich our languages, or do they push native words out?”
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Exact Slide 2 Interactive Pill Cloud -->
+                    <div class="lg:col-span-6">
+                        <div class="bg-cream p-5 sm:p-7 rounded-3xl border-2 border-navy/15 shadow-inner relative">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs font-bold uppercase tracking-wider text-navy/60 flex items-center gap-1.5">
+                                    <i data-lucide="mouse-pointer-click" class="w-4 h-4 text-rust"></i>
+                                    Click any word pill to inspect its adaptation:
+                                </span>
+                                <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-rust/10 text-rust">20 Anglicisms</span>
+                            </div>
+
+                            <!-- 20 Pills Grid matching Slide 2 aesthetics -->
+                            <div id="hero-pill-cloud" class="flex flex-wrap gap-2.5 sm:gap-3 justify-center py-2">
+                                <!-- Rendered by JS -->
+                            </div>
+
+                            <!-- Selected Pill Inspector Card -->
+                            <div id="pill-inspector" class="mt-5 p-4 rounded-2xl bg-navy text-cream transition-all">
+                                <div class="flex flex-wrap items-center justify-between gap-2 border-b border-cream/15 pb-2.5 mb-2.5">
+                                    <div class="flex items-center gap-2">
+                                        <span id="insp-word" class="font-serif font-bold text-2xl text-rustLight">deadline</span>
+                                        <span id="insp-category" class="text-xs px-2.5 py-0.5 rounded-full bg-cream/15 text-cream/90">Direct Borrowing · Study &amp; Business</span>
+                                    </div>
+                                    <span class="text-xs text-cream/60">Click any pill above</span>
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                                    <div class="bg-cream/10 p-2.5 rounded-xl">
+                                        <span class="text-xs uppercase tracking-wider text-cream/60 block">Kazakh Equivalent (KZ):</span>
+                                        <span id="insp-kz" class="font-bold text-base text-white">соңғы мерзім</span>
+                                    </div>
+                                    <div class="bg-cream/10 p-2.5 rounded-xl">
+                                        <span class="text-xs uppercase tracking-wider text-cream/60 block">Russian Equivalent (RU):</span>
+                                        <span id="insp-ru" class="font-bold text-base text-white">крайний срок</span>
+                                    </div>
+                                </div>
+                                <p id="insp-note" class="text-xs text-cream/80 mt-2.5 italic">
+                                    Adaptation: Direct loanword used in everyday school and workplace communication as a shorter alternative to native compound phrases.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 2: RESEARCH DIARY ROUTE (12 DAYS + CUSTOM GENERATED SVG ART)      -->
+    <!-- ===================================================================== -->
+    <main id="tab-diary" class="main-tab-content hidden flex-grow py-10 bg-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Diary Header & Route Controls -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 border-2 border-navy shadow-sm mb-8">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rust/10 text-rust text-xs font-bold uppercase tracking-wider mb-2">
+                            <i data-lucide="route" class="w-4 h-4"></i>
+                            Section 18 · Research Project Diary · 12-Day Route
+                        </div>
+                        <h1 class="text-3xl sm:text-4xl font-bold text-navy">Interactive Research Diary (Days 1–12)</h1>
+                        <p class="text-sm sm:text-base text-navy/75 mt-1 max-w-2xl">
+                            Step-by-step visual roadmap of the scientific project from preliminary literature review to final report revision, featuring custom illustrations for each day's task.
+                        </p>
+                    </div>
+
+                    <!-- Guided Stepper Controls & Phase Filters -->
+                    <div class="flex flex-wrap items-center gap-2.5">
+                        <button onclick="stepDiaryRoute(-1)" class="px-3.5 py-2.5 rounded-full border-2 border-navy text-navy font-bold text-xs hover:bg-sand transition-all">
+                            ← Prev Day
+                        </button>
+                        <button onclick="stepDiaryRoute(1)" class="px-5 py-2.5 rounded-full bg-rust text-cream font-bold text-xs sm:text-sm hover:bg-rustLight transition-all shadow-sm flex items-center gap-1.5">
+                            <i data-lucide="footprints" class="w-4 h-4"></i>
+                            <span>Route Step: Day <span id="current-route-day-label">1</span>/12 →</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Phase Filter Buttons -->
+                <div class="mt-5 flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-sand">
+                    <div class="flex flex-wrap items-center gap-1.5">
+                        <span class="text-xs font-bold uppercase tracking-wider text-navy/60 mr-2">Filter by Phase:</span>
+                        <button onclick="filterDiaryPhase('all')" id="phase-btn-all" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-navy text-cream transition-all">
+                            All 12 Days
+                        </button>
+                        <button onclick="filterDiaryPhase('theory')" id="phase-btn-theory" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-sand text-navy hover:bg-sandDark transition-all">
+                            Days 1–5: Literature &amp; Theory
+                        </button>
+                        <button onclick="filterDiaryPhase('empirical')" id="phase-btn-empirical" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-sand text-navy hover:bg-sandDark transition-all">
+                            Days 6–9: Fieldwork &amp; Survey
+                        </button>
+                        <button onclick="filterDiaryPhase('synthesis')" id="phase-btn-synthesis" class="px-3 py-1.5 rounded-xl text-xs font-bold bg-sand text-navy hover:bg-sandDark transition-all">
+                            Days 10–12: Synthesis &amp; Report
+                        </button>
+                    </div>
+
+                    <button onclick="toggleAllSignatures()" class="px-3.5 py-1.5 rounded-xl border border-navy/25 hover:border-navy text-xs font-bold text-navy flex items-center gap-1.5 transition-all">
+                        <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-rust"></i>
+                        <span id="sig-toggle-label">Toggle Supervisor's Signatures</span>
+                    </button>
+                </div>
+
+                <!-- Interactive 12-Station Mini-Map Progress Bar -->
+                <div class="mt-5 pt-4 border-t border-sand">
+                    <div class="flex items-center justify-between text-xs font-bold text-navy/70 mb-2">
+                        <span>START: Literature &amp; IT Lexicon (Days 1–5)</span>
+                        <span>MIDPOINT: Interviews &amp; Survey (Days 6–9)</span>
+                        <span>FINISH: Synthesis &amp; Defense (Days 10–12)</span>
+                    </div>
+                    <div id="diary-route-nodes" class="grid grid-cols-6 sm:grid-cols-12 gap-2 pt-1">
+                        <!-- 12 clickable station nodes rendered by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- 12 DAYS VISUAL ROUTE CARDS GRID -->
+            <div id="diary-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative">
+                <!-- Populated by JS with custom SVG art for each day -->
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 3: TRAINER & DASHBOARD (TRAINER FIRST, SURVEY DASHBOARD SECOND)   -->
+    <!-- ===================================================================== -->
+    <main id="tab-dashboard" class="main-tab-content hidden flex-grow py-10 bg-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+
+            <!-- Quick Jump & Order Control Sub-Navigation inside Tab 3 -->
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-white p-4 sm:px-6 rounded-2xl border-2 border-navy shadow-sm">
+                <div class="flex items-center gap-3">
+                    <span class="w-3 h-3 rounded-full bg-rust"></span>
+                    <span class="font-serif font-bold text-lg text-navy">Practical Module: Vocabulary Trainer &amp; Survey Results Dashboard</span>
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                    <a href="#combined-trainer-block" class="px-3.5 py-1.5 rounded-xl bg-navy text-cream text-xs font-bold hover:bg-rust transition-all">
+                        ↓ 1. Vocabulary Trainer (11 Words)
+                    </a>
+                    <a href="#combined-survey-block" class="px-3.5 py-1.5 rounded-xl bg-sand text-navy text-xs font-bold hover:bg-sandDark transition-all">
+                        ↓ 2. Survey Dashboard (Slides 8–9)
+                    </a>
+                    <button onclick="swapTrainerAndDashboardOrder()" class="px-3.5 py-1.5 rounded-xl border-2 border-rust text-rust hover:bg-rust hover:text-cream text-xs font-bold transition-all flex items-center gap-1">
+                        <i data-lucide="arrow-up-down" class="w-3.5 h-3.5"></i>
+                        <span>Swap Order</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Container that holds Trainer (First) and Survey Dashboard (Second) -->
+            <div id="tab3-sections-wrapper" class="flex flex-col gap-12">
+
+                <!-- ========================================================= -->
+                <!-- FIRST (TOP OF TAB 3): VOCABULARY TRAINER (SLIDE 10)       -->
+                <!-- ========================================================= -->
+                <section id="combined-trainer-block" class="bg-sand/40 rounded-3xl p-6 sm:p-8 border-2 border-navy/20 order-1">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                        <div>
+                            <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-rust mb-1">
+                                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                                Part 1 · Slide 10 · Interactive Vocabulary Trainer (11 Words)
+                            </div>
+                            <h2 class="text-3xl sm:text-4xl font-bold text-navy">Native Words We Already Have</h2>
+                            <p class="text-sm sm:text-base text-navy/75 mt-1">
+                                For almost every popular anglicism, we already have an exact native word in both Kazakh and Russian.
+                            </p>
+                        </div>
+
+                        <!-- Mode Switcher: Flashcards vs Quiz -->
+                        <div class="inline-flex bg-cream p-1.5 rounded-2xl border-2 border-navy self-start">
+                            <button onclick="switchTrainerMode('flashcards')" id="btn-mode-flashcards" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-navy text-cream transition-all">
+                                1. 3D Flip Flashcards (11)
+                            </button>
+                            <button onclick="switchTrainerMode('quiz')" id="btn-mode-quiz" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-navy hover:bg-sand/60 transition-all">
+                                2. Blitz Quiz (11 Questions)
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- MODE 1: FLASHCARDS GRID -->
+                    <div id="trainer-flashcards-view">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-semibold text-navy/70">Click any card to flip it and reveal its Kazakh and Russian equivalents:</span>
+                            <button onclick="flipAllFlashcards()" class="text-xs font-bold text-rust hover:underline flex items-center gap-1">
+                                <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                                Flip All Cards
+                            </button>
+                        </div>
+                        <div id="flashcards-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- MODE 2: INTERACTIVE QUIZ -->
+                    <div id="trainer-quiz-view" class="hidden">
+                        <div class="max-w-3xl mx-auto bg-white rounded-3xl border-2 border-navy p-6 sm:p-8 shadow-md">
+                            <div class="flex items-center justify-between border-b border-sand pb-4 mb-6">
+                                <div>
+                                    <span class="text-xs font-bold uppercase tracking-wider text-rust block">Linguistic Blitz Quiz</span>
+                                    <h3 id="quiz-progress-text" class="font-serif text-xl font-bold text-navy">Question 1 of 11</h3>
+                                </div>
+                                <div class="flex items-center gap-3">
+                                    <span class="px-3 py-1 rounded-full bg-sand text-navy font-bold text-xs">Score: <span id="quiz-score">0</span></span>
+                                    <button onclick="resetQuiz()" class="text-xs font-semibold text-rust hover:underline">Restart</button>
+                                </div>
+                            </div>
+
+                            <div id="quiz-question-box">
+                                <p class="text-xs uppercase tracking-wider text-navy/60 mb-2">Select the correct pair of native equivalents (KZ + RU) for this anglicism:</p>
+                                <div class="my-4 inline-block px-6 py-3 rounded-full bg-navy text-cream font-serif text-2xl sm:text-3xl font-bold shadow-sm" id="quiz-target-word">
+                                    deadline
+                                </div>
+
+                                <div id="quiz-options-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
+                                    <!-- Options populated by JS -->
+                                </div>
+
+                                <div id="quiz-feedback-msg" class="hidden mt-5 p-4 rounded-2xl text-sm font-medium"></div>
+
+                                <div class="mt-6 flex justify-end">
+                                    <button onclick="nextQuizQuestion()" id="quiz-next-btn" class="hidden px-6 py-2.5 rounded-full bg-rust text-cream font-bold text-sm hover:bg-rustLight transition-all">
+                                        Next Word →
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- ========================================================= -->
+                <!-- SECOND (BOTTOM OF TAB 3): SURVEY DASHBOARD (SLIDES 8–9)   -->
+                <!-- ========================================================= -->
+                <div id="combined-survey-block" class="space-y-8 order-2">
+                    <!-- Dashboard Header Banner -->
+                    <div class="bg-navy text-cream rounded-3xl p-6 sm:p-8 border-2 border-navy shadow-md">
+                        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                            <div>
+                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rust text-cream text-xs font-bold uppercase tracking-wider mb-2">
+                                    <i data-lucide="bar-chart-3" class="w-3.5 h-3.5"></i>
+                                    Part 2 · Slides 8–9 · Empirical Survey Results
+                                </div>
+                                <h2 class="text-3xl sm:text-4xl font-bold text-white">Student Survey Results Dashboard</h2>
+                                <p class="text-sm text-cream/80 mt-1">
+                                    Empirical analysis of how students aged 15–17 use and perceive anglicisms in Russian and Kazakh.
+                                </p>
+                            </div>
+
+                            <!-- Survey Metadata Pills -->
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3.5 py-2 rounded-2xl bg-cream/10 border border-cream/15 text-xs font-semibold">
+                                    📋 Platform: <b class="text-white">Google Forms</b>
+                                </span>
+                                <span class="px-3.5 py-2 rounded-2xl bg-cream/10 border border-cream/15 text-xs font-semibold">
+                                    🌐 Bilingual: <b class="text-white">Kazakh &amp; Russian</b>
+                                </span>
+                                <span class="px-3.5 py-2 rounded-2xl bg-cream/10 border border-cream/15 text-xs font-semibold">
+                                    👥 Respondents: <b class="text-white">Ages 15–17 (17–20 students)</b>
+                                </span>                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TOP KPI SUMMARY CARDS (SLIDE 9) -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        
+                        <!-- KPI 1: 65% Frequency -->
+                        <div class="bg-white rounded-3xl p-6 border-2 border-navy shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-bold uppercase tracking-wider text-rust">Usage Frequency</span>
+                                    <span class="px-2.5 py-0.5 rounded-full bg-sand text-navy text-xs font-bold">11 of 17 respondents</span>
+                                </div>
+                                <div class="font-serif text-5xl font-bold text-navy my-2">65%</div>
+                                <p class="text-sm font-semibold text-navy">
+                                    use English words in speech <span class="text-rust underline">at least sometimes</span>
+                                </p>
+                            </div>
+                            <p class="text-xs text-navy/65 mt-4 pt-3 border-t border-sand">
+                                Only 2–3 respondents use them "often", showing that borrowing is mostly situational rather than total.
+                            </p>
+                        </div>
+
+                        <!-- KPI 2: 41% Enrich vs 41% Neutral vs 18% Harm -->
+                        <div class="bg-white rounded-3xl p-6 border-2 border-navy shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-bold uppercase tracking-wider text-rust">Attitudes Toward Anglicisms</span>
+                                    <span class="px-2.5 py-0.5 rounded-full bg-sand text-navy text-xs font-bold">Opinions Split</span>
+                                </div>
+                                <div class="flex items-baseline gap-3 my-2">
+                                    <span class="font-serif text-5xl font-bold text-navy">41%</span>
+                                    <span class="text-sm font-bold text-emerald-700">believe they enrich</span>
+                                </div>
+                                <p class="text-sm font-semibold text-navy">
+                                    another <span class="underline">41% see no effect</span>, and <span class="text-rust font-bold">18%</span> think they harm the language.
+                                </p>
+                            </div>
+                            <p class="text-xs text-navy/65 mt-4 pt-3 border-t border-sand">
+                                82% of surveyed students view anglicisms as either beneficial or neutral in daily communication.
+                            </p>
+                        </div>
+
+                        <!-- KPI 3: 47% Conditional Replacement -->
+                        <div class="bg-white rounded-3xl p-6 border-2 border-navy shadow-sm flex flex-col justify-between">
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-bold uppercase tracking-wider text-rust">Replacing With Native Words</span>
+                                    <span class="px-2.5 py-0.5 rounded-full bg-rust text-cream text-xs font-bold">Key Finding</span>
+                                </div>
+                                <div class="font-serif text-5xl font-bold text-rust my-2">47%</div>
+                                <p class="text-sm font-semibold text-navy">
+                                    would replace an anglicism <span class="underline">only where a native word exists</span>
+                                </p>
+                            </div>
+                            <p class="text-xs text-navy/65 mt-4 pt-3 border-t border-sand">
+                                35% say replacement is unnecessary, while 18% support replacing borrowed words in all contexts.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <!-- CHARTS GRID (4 INTERACTIVE VISUALIZATIONS) -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        
+                        <!-- Chart 1: Where Anglicisms are used (6 cols) -->
+                        <div class="lg:col-span-6 bg-white rounded-3xl p-6 sm:p-7 border border-sandDark shadow-sm">
+                            <div class="flex items-center justify-between mb-5">
+                                <div>
+                                    <span class="text-xs font-bold uppercase text-rust">Usage Contexts</span>
+                                    <h3 class="text-xl font-bold text-navy">Where do students use English words most?</h3>
+                                </div>
+                                <i data-lucide="share-2" class="w-5 h-5 text-navy/40"></i>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between text-xs sm:text-sm font-bold mb-1.5">
+                                        <span>📱 Social Media (TikTok, Instagram, chats, feeds)</span>
+                                        <span class="text-rust">65%</span>
+                                    </div>
+                                    <div class="w-full h-4 bg-sand rounded-full overflow-hidden">
+                                        <div class="h-full bg-navy rounded-full transition-all duration-1000" style="width: 65%"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between text-xs sm:text-sm font-bold mb-1.5">
+                                        <span>🎓 Study &amp; School (Projects, IT classes, presentations)</span>
+                                        <span class="text-rust">65%</span>
+                                    </div>
+                                    <div class="w-full h-4 bg-sand rounded-full overflow-hidden">
+                                        <div class="h-full bg-rust rounded-full transition-all duration-1000" style="width: 65%"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between text-xs sm:text-sm font-bold mb-1.5">
+                                        <span>🎮 Video Games &amp; Streaming (stream, skill, user)</span>
+                                        <span class="text-navy">59%</span>
+                                    </div>
+                                    <div class="w-full h-4 bg-sand rounded-full overflow-hidden">
+                                        <div class="h-full bg-navyLight rounded-full transition-all duration-1000" style="width: 59%"></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex justify-between text-xs sm:text-sm font-bold mb-1.5">
+                                        <span>💬 Everyday Conversation with Friends</span>
+                                        <span class="text-navy/70">41%</span>
+                                    </div>
+                                    <div class="w-full h-4 bg-sand rounded-full overflow-hidden">
+                                        <div class="h-full bg-sandDark rounded-full transition-all duration-1000" style="width: 41%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chart 2: Why people use them (6 cols) -->
+                        <div class="lg:col-span-6 bg-white rounded-3xl p-6 sm:p-7 border border-sandDark shadow-sm">
+                            <div class="flex items-center justify-between mb-5">
+                                <div>
+                                    <span class="text-xs font-bold uppercase text-rust">Speaker Motivation</span>
+                                    <h3 class="text-xl font-bold text-navy">Why do speakers choose English words?</h3>
+                                </div>
+                                <i data-lucide="help-circle" class="w-5 h-5 text-navy/40"></i>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+                                <!-- SVG Donut Chart -->
+                                <div class="flex flex-col items-center justify-center">
+                                    <svg viewBox="0 0 160 160" class="w-40 h-40">
+                                        <circle cx="80" cy="80" r="58" fill="none" stroke="#E4DFD3" stroke-width="22" />
+                                        <!-- 41% Habit -->
+                                        <circle cx="80" cy="80" r="58" fill="none" stroke="#132232" stroke-width="22" stroke-dasharray="149.4 364.4" stroke-dashoffset="0" transform="rotate(-90 80 80)" />
+                                        <!-- 29% Shorter -->
+                                        <circle cx="80" cy="80" r="58" fill="none" stroke="#B84A24" stroke-width="22" stroke-dasharray="105.7 364.4" stroke-dashoffset="-149.4" transform="rotate(-90 80 80)" />
+                                        <!-- 30% Other (No native / Modern) -->
+                                        <circle cx="80" cy="80" r="58" fill="none" stroke="#8C7A6B" stroke-width="22" stroke-dasharray="109.3 364.4" stroke-dashoffset="-255.1" transform="rotate(-90 80 80)" />
+                                        <text x="80" y="76" text-anchor="middle" class="font-serif font-bold text-lg fill-navy">41%</text>
+                                        <text x="80" y="94" text-anchor="middle" class="text-[10px] font-bold fill-rust">Habit</text>
+                                    </svg>
+                                </div>
+
+                                <!-- Legend & Breakdown -->
+                                <div class="space-y-3 text-xs sm:text-sm">
+                                    <div class="p-3 rounded-2xl bg-cream border border-sand flex items-center justify-between">
+                                        <span class="flex items-center gap-2 font-semibold">
+                                            <span class="w-3 h-3 rounded-full bg-navy"></span>
+                                            Habit (Automatic usage)
+                                        </span>
+                                        <span class="font-bold text-navy">41%</span>
+                                    </div>
+                                    <div class="p-3 rounded-2xl bg-cream border border-sand flex items-center justify-between">
+                                        <span class="flex items-center gap-2 font-semibold">
+                                            <span class="w-3 h-3 rounded-full bg-rust"></span>
+                                            English words are shorter
+                                        </span>
+                                        <span class="font-bold text-rust">29%</span>
+                                    </div>
+                                    <div class="p-3 rounded-2xl bg-cream border border-sand flex items-center justify-between">
+                                        <span class="flex items-center gap-2 font-semibold">
+                                            <span class="w-3 h-3 rounded-full bg-[#8C7A6B]"></span>
+                                            Sounds modern / No exact native term
+                                        </span>
+                                        <span class="font-bold text-navy/80">30%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- MOST NAMED WORDS LEADERBOARD + LIVE JURY POLL -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                        
+                        <!-- Left 5 cols: Top Most Named Words (Slide 9) -->
+                        <div class="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-7 border border-sandDark shadow-sm flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-bold uppercase text-rust">Open-Ended Survey Question</span>
+                                <h3 class="text-xl font-bold text-navy mb-2">Most Named Words in Survey</h3>
+                                <p class="text-xs text-navy/70 mb-4">
+                                    The most common word was <b>"like"</b>, followed by everyday conversational markers and IT vocabulary:
+                                </p>
+
+                                <div class="flex flex-wrap gap-2.5 my-3">
+                                    <span class="pill-tag pill-rust text-base font-bold">#1 like (top word)</span>
+                                    <span class="pill-tag pill-navy text-sm">hello</span>
+                                    <span class="pill-tag pill-navy text-sm">what</span>
+                                    <span class="pill-tag pill-outline text-sm">idk (I don't know)</span>
+                                    <span class="pill-tag pill-sand text-sm">maybe</span>
+                                    <span class="pill-tag pill-sand text-sm">yes / no</span>
+                                    <span class="pill-tag pill-outline text-sm">cringe</span>
+                                    <span class="pill-tag pill-rust text-sm">deadline</span>
+                                    <span class="pill-tag pill-navy text-sm">feedback</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 p-4 rounded-2xl bg-cream border border-sand text-xs text-navy/80">
+                                <b>Key Takeaway:</b> Students borrow both technical IT terms and short conversational fillers (<i>idk, what, like</i>) for faster digital messaging.
+                            </div>
+                        </div>
+
+                        <!-- Right 7 cols: Interactive Live Poll for Jury & Visitors -->
+                        <div class="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-7 border-2 border-rust shadow-sm">
+                            <div class="flex items-center justify-between border-b border-sand pb-3 mb-4">
+                                <div>
+                                    <span class="text-xs font-bold uppercase tracking-wider text-rust">Interactive Defense Poll</span>
+                                    <h3 class="text-xl font-bold text-navy">Live Poll: Compare Your View with the Survey</h3>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-rust/10 text-rust text-xs font-bold">Instant Comparison</span>
+                            </div>
+
+                            <div class="space-y-4">
+                                <div>
+                                    <p class="text-xs sm:text-sm font-bold text-navy mb-2">Do you think anglicisms enrich or harm the Russian and Kazakh languages?</p>
+                                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                                        <button onclick="voteJuryPoll('enrich')" class="jury-poll-btn px-3 py-2.5 rounded-xl border-2 border-sand text-xs font-bold text-navy hover:border-navy transition-all text-left">
+                                            ✨ Enrich the language (matches 41% of students)
+                                        </button>
+                                        <button onclick="voteJuryPoll('neutral')" class="jury-poll-btn px-3 py-2.5 rounded-xl border-2 border-sand text-xs font-bold text-navy hover:border-navy transition-all text-left">
+                                            ⚖️ See no effect / Neutral (matches 41% of students)
+                                        </button>
+                                        <button onclick="voteJuryPoll('harm')" class="jury-poll-btn px-3 py-2.5 rounded-xl border-2 border-sand text-xs font-bold text-navy hover:border-navy transition-all text-left">
+                                            🛡️ Harm native vocabulary (matches 18% of students)
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div id="jury-poll-result" class="hidden p-4 rounded-2xl bg-navy text-cream text-xs sm:text-sm space-y-1.5">
+                                    <!-- Populated on click -->
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ===================================================================== -->
+    <!-- FOOTER                                                                -->
+    <!-- ===================================================================== -->
+    <footer class="bg-navy text-cream border-t border-navyLight mt-12 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center gap-4 text-xs text-cream/70">
+            <div class="flex flex-wrap gap-3">
+                <button onclick="switchMainTab('tab-presentation')" class="hover:text-white underline">1. Presentation</button>
+                <span>·</span>
+                <button onclick="switchMainTab('tab-diary')" class="hover:text-white underline">2. Research Diary (12 Days)</button>
+                <span>·</span>
+                <button onclick="switchMainTab('tab-dashboard')" class="hover:text-white underline">3. Trainer &amp; Dashboard</button>
+            </div>
+            <div class="text-center text-sm text-cream/90">
+                <span class="font-semibold text-cream">Mamayev Yersultan</span> · 9 "B" · <span class="font-serif italic">Anglicisms in Russian and Kazakh</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===================================================================== -->
+    <!-- JAVASCRIPT: DATA & INTERACTIVITY (100% ENGLISH)                       -->
+    <!-- ===================================================================== -->
+    <script>
+        // ---------------------------------------------------------------------
+        // 1. SLIDE 2 FLOATING PILLS DATA (20 WORDS IN ENGLISH)
+        // ---------------------------------------------------------------------
+        const slide2Pills = [
+            { word: "like", style: "pill-rust", rotate: "-4deg", kz: "ұнату белгісі", ru: "отметка «нравится»", cat: "Morphological Adaptation · Social Media (#1 in Survey)", note: "Forms Russian verbs like 'laiknut'' and Kazakh phrases like 'laik basu' in daily social media communication." },
+            { word: "deadline", style: "pill-navy", rotate: "3deg", kz: "соңғы мерзім", ru: "крайний срок", cat: "Direct Borrowing · Study & Business", note: "Adopted directly to replace longer native multi-word expressions in school and workplace deadlines." },
+            { word: "cringe", style: "pill-outline", rotate: "-3deg", kz: "ұят, ыңғайсыздық", ru: "стыд, неловкость", cat: "Code-Switching · Youth Slang", note: "Slide 4 example: 'Bul óte cringe' — used by youth to express awkwardness or embarrassment." },
+            { word: "feedback", style: "pill-navy", rotate: "4deg", kz: "кері байланыс", ru: "обратная связь", cat: "Code-Switching · Business & Education", note: "Slide 4 example: 'Skin' feedback do pyatnitsy' — mixes an English noun into a Russian sentence." },
+            { word: "content", style: "pill-sand", rotate: "-2deg", kz: "мазмұн", ru: "содержимое", cat: "Direct Borrowing · Media & Social Networks", note: "Widely used by creators and media instead of native equivalents 'мазмұн' and 'содержимое'." },
+            { word: "user", style: "pill-navy", rotate: "4deg", kz: "пайдаланушы", ru: "пользователь", cat: "Direct Borrowing · IT Sector", note: "Core IT term integrated into everyday tech speech alongside native equivalents." },
+            { word: "stream", style: "pill-sand", rotate: "-5deg", kz: "тікелей эфир", ru: "прямая трансляция", cat: "Direct Borrowing · Gaming & Media (59%)", note: "One-syllable English loanword preferred by gamers and viewers for its brevity." },
+            { word: "skill", style: "pill-rust", rotate: "2deg", kz: "дағды", ru: "навык", cat: "Youth & Gaming Lexicon", note: "Spread through video games and career discussions ('soft skills', 'hard skills')." },
+            { word: "hype", style: "pill-outline", rotate: "-4deg", kz: "шу, дүрбелең", ru: "шумиха, ажиотаж", cat: "Morphological Adaptation · Social Media", note: "Quickly bildet Russian adjectives ('khaipovy') and verbs ('khaipit'') in youth slang." },
+            { word: "gadget", style: "pill-navy", rotate: "5deg", kz: "құрылғы", ru: "устройство", cat: "Direct Borrowing · IT & Hardware", note: "Used as an umbrella term for smart portable electronic devices." },
+            { word: "startup", style: "pill-sand", rotate: "-2deg", kz: "бастапқы жоба", ru: "новый бизнес-проект", cat: "Direct Borrowing · Globalization & Business", note: "Entered both languages directly through international entrepreneurship and the IT sector." },
+            { word: "manager", style: "pill-navy", rotate: "4deg", kz: "басқарушы", ru: "управляющий (менеджер)", cat: "Phonetic Adaptation · Business", note: "Slide 5 example: phonetic adaptation where 'manager' becomes 'menedzher' to fit local pronunciation." },
+            { word: "online", style: "pill-navy", rotate: "-3deg", kz: "желіде", ru: "в сети", cat: "Hybrid Formation · Core Digital Term", note: "Slide 5 example: joins native words to create hybrid phrases like 'online sabaq' (online lesson)." },
+            { word: "selfie", style: "pill-rust", rotate: "5deg", kz: "селфи (өздік сурет)", ru: "автопортрет", cat: "Direct Borrowing · Social Media Culture", note: "Spread globally in days via smartphone cameras and social media feeds." },
+            { word: "hashtag", style: "pill-outline", rotate: "-5deg", kz: "хэштег (белгі)", ru: "тематическая метка", cat: "Direct Borrowing · Social Media", note: "Arrived with social platforms before a concise native single-word term existed." },
+            { word: "blogger", style: "pill-outline", rotate: "4deg", kz: "блогер (автор)", ru: "автор интернет-дневника", cat: "Morphological Adaptation · Digital Media", note: "Fully integrated into both Russian and Kazakh with native plural and case suffixes." },
+            { word: "lifehack", style: "pill-navy", rotate: "-3deg", kz: "пайдалы кеңес", ru: "полезный совет / хитрость", cat: "Compound Loanword · Youth & Media", note: "Used across short-form video platforms as a modern synonym for a practical tip." },
+            { word: "laptop", style: "pill-sand", rotate: "3deg", kz: "ықшам компьютер", ru: "портативный компьютер (ноутбук)", cat: "Direct Borrowing · IT Sector", note: "Borrowed alongside 'computer' (Kazakh plural: 'computer-ler')." },
+            { word: "influencer", style: "pill-navy", rotate: "-2deg", kz: "пікір көшбасшысы", ru: "лидер мнений", cat: "Direct Borrowing · Marketing & Media", note: "Replaces the longer three-word calque 'leader of public opinion' in media discourse." },
+            { word: "weekend", style: "pill-rust", rotate: "5deg", kz: "демалыс күндері", ru: "выходные дни", cat: "Direct Borrowing · Lifestyle & Media", note: "Used in urban media and lifestyle contexts alongside native words for days off." }
+        ];
+
+        function renderHeroPills() {
+            const container = document.getElementById('hero-pill-cloud');
+            container.innerHTML = slide2Pills.map((item, idx) => `
+                <button onclick="inspectPill(${idx})" 
+                    style="transform: rotate(${item.rotate})"
+                    class="pill-tag ${item.style} text-sm sm:text-base">
+                    ${item.word}
+                </button>
+            `).join('');
+        }
+
+        function inspectPill(index) {
+            const item = slide2Pills[index];
+            document.getElementById('insp-word').textContent = item.word;
+            document.getElementById('insp-category').textContent = item.cat;
+            document.getElementById('insp-kz').textContent = item.kz;
+            document.getElementById('insp-ru').textContent = item.ru;
+            document.getElementById('insp-note').textContent = item.note;
+        }
+
+        // ---------------------------------------------------------------------
+        // 2. ALL 14 SLIDES FOR THE STANDALONE PRESENTATION WINDOW (NO AUTHOR PILL)
+        // ---------------------------------------------------------------------
+        const presentationSlides = [
+            {
+                num: 1,
+                tag: "SLIDE 1 · COVER",
+                subtitle: "Research Project 2026 — Cover",
+                html: `
+                    <div class="text-center space-y-10 py-6">
+                        <div class="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-4xl mx-auto">
+                            <span class="pill-tag pill-rust text-sm sm:text-lg px-6 py-2.5">like</span>
+                            <span class="pill-tag pill-outline text-sm sm:text-lg px-6 py-2.5">cringe</span>
+                            <span class="pill-tag pill-sand text-sm sm:text-lg px-6 py-2.5">content</span>
+                            <span class="pill-tag pill-navy text-sm sm:text-lg px-6 py-2.5">deadline</span>
+                            <span class="pill-tag pill-navy text-sm sm:text-lg px-6 py-2.5">feedback</span>
+                            <span class="pill-tag pill-outline text-sm sm:text-lg px-6 py-2.5">hype</span>
+                            <span class="pill-tag pill-navy text-sm sm:text-lg px-6 py-2.5">user</span>
+                        </div>
+                        <div class="py-6 space-y-4">
+                            <div class="text-sm sm:text-base font-bold tracking-widest uppercase text-rust">RESEARCH PROJECT 2026</div>
+                            <h3 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-bold text-navy leading-tight">Anglicisms in Russian<br class="hidden sm:inline" /> and Kazakh</h3>
+                            <p class="text-lg sm:text-2xl text-navy/75 max-w-3xl mx-auto pt-2 leading-relaxed">How globalization and the IT sector are changing the way we speak</p>
+                        </div>
+                        <div class="flex flex-wrap justify-center gap-3 sm:gap-4 max-w-4xl mx-auto pt-2">
+                            <span class="pill-tag pill-navy text-sm sm:text-lg px-6 py-2.5">online</span>
+                            <span class="pill-tag pill-navy text-sm sm:text-lg px-6 py-2.5">gadget</span>
+                            <span class="pill-tag pill-sand text-sm sm:text-lg px-6 py-2.5">startup</span>
+                            <span class="pill-tag pill-outline text-sm sm:text-lg px-6 py-2.5">hashtag</span>
+                            <span class="pill-tag pill-sand text-sm sm:text-lg px-6 py-2.5">stream</span>
+                            <span class="pill-tag pill-navy text-sm sm:text-lg px-6 py-2.5">manager</span>
+                            <span class="pill-tag pill-rust text-sm sm:text-lg px-6 py-2.5">skill</span>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                num: 2,
+                tag: "SLIDE 2 · THE PROBLEM",
+                subtitle: "We use English words every day, often without noticing",
+                html: `
+                    <div class="space-y-8">
+                        <div class="text-center space-y-2">
+                            <div class="text-sm font-bold uppercase tracking-widest text-rust">THE PROBLEM</div>
+                            <h3 class="font-serif text-3xl sm:text-5xl font-bold text-navy">We use English words every day, often without noticing</h3>
+                        </div>
+                        <div class="flex flex-wrap justify-center gap-3 sm:gap-4 p-6 sm:p-10 rounded-3xl bg-sand/40 border-2 border-sandDark">
+                            <span class="pill-tag pill-rust text-base sm:text-xl px-6 py-3">like</span>
+                            <span class="pill-tag pill-navy text-base sm:text-xl px-6 py-3">deadline</span>
+                            <span class="pill-tag pill-outline text-base sm:text-xl px-6 py-3">cringe</span>
+                            <span class="pill-tag pill-navy text-base sm:text-xl px-6 py-3">feedback</span>
+                            <span class="pill-tag pill-sand text-base sm:text-xl px-6 py-3">content</span>
+                            <span class="pill-tag pill-navy text-base sm:text-xl px-6 py-3">user</span>
+                            <span class="pill-tag pill-sand text-base sm:text-xl px-6 py-3">stream</span>
+                            <span class="pill-tag pill-rust text-base sm:text-xl px-6 py-3">skill</span>
+                            <span class="pill-tag pill-outline text-base sm:text-xl px-6 py-3">hype</span>
+                            <span class="pill-tag pill-navy text-base sm:text-xl px-6 py-3">gadget</span>
+                            <span class="pill-tag pill-sand text-base sm:text-xl px-6 py-3">startup</span>
+                            <span class="pill-tag pill-navy text-base sm:text-xl px-6 py-3">manager</span>
+                            <span class="pill-tag pill-navy text-base sm:text-xl px-6 py-3">online</span>
+                            <span class="pill-tag pill-rust text-base sm:text-xl px-6 py-3">selfie</span>
+                            <span class="pill-tag pill-outline text-base sm:text-xl px-6 py-3">hashtag</span>
+                            <span class="pill-tag pill-outline text-base sm:text-xl px-6 py-3">blogger</span>
+                            <span class="pill-tag pill-navy text-base sm:text-xl px-6 py-3">lifehack</span>
+                            <span class="pill-tag pill-sand text-base sm:text-xl px-6 py-3">laptop</span>
+                            <span class="pill-tag pill-navy text-base sm:text-xl px-6 py-3">influencer</span>
+                            <span class="pill-tag pill-rust text-base sm:text-xl px-6 py-3">weekend</span>
+                        </div>
+                        <div class="p-5 sm:p-6 rounded-2xl bg-rust text-cream text-center font-serif text-xl sm:text-3xl font-bold shadow-md">
+                            Do they enrich our languages, or push native words out?
+                        </div>
+                    </div>
+                `
+            },
+            {
+                num: 3,
+                tag: "SLIDE 3 · GOAL AND OBJECTIVES",
+                subtitle: "What this research sets out to do",
+                html: `
+                    <div class="space-y-8">
+                        <div>
+                            <div class="text-sm font-bold uppercase tracking-widest text-rust mb-1">GOAL AND OBJECTIVES</div>
+                            <h3 class="font-serif text-3xl sm:text-5xl font-bold text-navy">What this research sets out to do</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-stretch">
+                            <div class="md:col-span-5 p-8 sm:p-10 rounded-3xl bg-navy text-cream flex flex-col justify-center shadow-lg">
+                                <div class="text-sm font-bold uppercase tracking-wider text-rustLight mb-3">GOAL</div>
+                                <p class="font-serif text-2xl sm:text-3xl font-bold leading-snug">
+                                    To study how anglicisms are used in Russian and Kazakh, and how people feel about them
+                                </p>
+                            </div>
+                            <div class="md:col-span-7 space-y-4 text-base sm:text-lg flex flex-col justify-center">
+                                <div class="p-4 sm:p-5 rounded-2xl bg-white border-2 border-sandDark flex items-center gap-4 shadow-sm">
+                                    <span class="w-10 h-10 rounded-full bg-rust text-cream font-bold text-lg flex items-center justify-center shrink-0">1</span>
+                                    <span class="font-medium text-navy">Trace where anglicisms come from and why they spread</span>
+                                </div>
+                                <div class="p-4 sm:p-5 rounded-2xl bg-white border-2 border-sandDark flex items-center gap-4 shadow-sm">
+                                    <span class="w-10 h-10 rounded-full bg-rust text-cream font-bold text-lg flex items-center justify-center shrink-0">2</span>
+                                    <span class="font-medium text-navy">Compare how Russian and Kazakh adapt them</span>
+                                </div>
+                                <div class="p-4 sm:p-5 rounded-2xl bg-white border-2 border-sandDark flex items-center gap-4 shadow-sm">
+                                    <span class="w-10 h-10 rounded-full bg-rust text-cream font-bold text-lg flex items-center justify-center shrink-0">3</span>
+                                    <span class="font-medium text-navy">Survey students on their use and attitudes</span>
+                                </div>
+                                <div class="p-4 sm:p-5 rounded-2xl bg-white border-2 border-sandDark flex items-center gap-4 shadow-sm">
+                                    <span class="w-10 h-10 rounded-full bg-rust text-cream font-bold text-lg flex items-center justify-center shrink-0">4</span>
+                                    <span class="font-medium text-navy">Suggest ways to balance new words with native vocabulary</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                num: 4,
+                tag: "SLIDE 4 · THEORY",
+                subtitle: "What is an anglicism?",
+                html: `
+                    <div class="space-y-8">
+                        <div>
+                            <div class="text-sm font-bold uppercase tracking-widest text-rust mb-1">THEORY</div>
+                            <h3 class="font-serif text-3xl sm:text-5xl font-bold text-navy">What is an anglicism?</h3>
+                            <p class="text-base sm:text-xl text-navy/75 mt-2">A word or phrase borrowed from English into another language</p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="p-6 sm:p-8 rounded-3xl bg-white border-2 border-navy flex flex-col justify-between shadow-sm">
+                                <div>
+                                    <span class="text-sm font-bold uppercase tracking-wider text-rust">Loanword</span>
+                                    <p class="text-sm sm:text-base text-navy/80 mt-2 mb-5">Taken straight from English, keeping its form and meaning</p>
+                                </div>
+                                <div class="text-sm sm:text-base font-semibold bg-cream p-4 rounded-2xl space-y-1.5 border border-sand">
+                                    <div class="text-xs font-bold uppercase text-navy/50 mb-1">EXAMPLES</div>
+                                    <div>• computer</div>
+                                    <div>• business</div>
+                                    <div>• marketing</div>
+                                    <div>• online</div>
+                                </div>
+                            </div>
+                            <div class="p-6 sm:p-8 rounded-3xl bg-white border-2 border-navy flex flex-col justify-between shadow-sm">
+                                <div>
+                                    <span class="text-sm font-bold uppercase tracking-wider text-rust">Calque</span>
+                                    <p class="text-sm sm:text-base text-navy/80 mt-2 mb-5">Each part of the English word is translated into a native one</p>
+                                </div>
+                                <div class="text-sm sm:text-base font-semibold bg-cream p-4 rounded-2xl space-y-2 border border-sand">
+                                    <div class="text-xs font-bold uppercase text-navy/50 mb-1">EXAMPLES</div>
+                                    <div>• brainstorm → <b>mozgovoy shturm</b></div>
+                                    <div>• skyscraper → <b>neboskryob</b></div>
+                                </div>
+                            </div>
+                            <div class="p-6 sm:p-8 rounded-3xl bg-white border-2 border-rust flex flex-col justify-between shadow-sm">
+                                <div>
+                                    <span class="text-sm font-bold uppercase tracking-wider text-rust">Code-switching</span>
+                                    <p class="text-sm sm:text-base text-navy/80 mt-2 mb-5">Speakers switch between languages inside one sentence</p>
+                                </div>
+                                <div class="text-sm sm:text-base font-semibold bg-cream p-4 rounded-2xl space-y-2 border border-sand">
+                                    <div class="text-xs font-bold uppercase text-navy/50 mb-1">EXAMPLES</div>
+                                    <div>• "Skin' <b>feedback</b> do pyatnitsy"</div>
+                                    <div>• "Bul óte <b>cringe</b>"</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                num: 5,
+                tag: "SLIDE 5 · THEORY",
+                subtitle: "How languages adapt English words",
+                html: `
+                    <div class="space-y-6">
+                        <div>
+                            <div class="text-sm font-bold uppercase tracking-widest text-rust mb-1">THEORY</div>
+                            <h3 class="font-serif text-3xl sm:text-5xl font-bold text-navy">How languages adapt English words</h3>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse text-sm sm:text-lg bg-white rounded-3xl overflow-hidden border-2 border-sandDark shadow-sm">
+                                <thead>
+                                    <tr class="bg-navy text-cream">
+                                        <th class="p-4 sm:p-5">Method</th>
+                                        <th class="p-4 sm:p-5">What happens</th>
+                                        <th class="p-4 sm:p-5">Example</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-sand">
+                                    <tr><td class="p-4 font-bold">Direct borrowing</td><td class="p-4">Taken almost unchanged</td><td class="p-4 font-mono font-semibold text-rust">computer, internet, online</td></tr>
+                                    <tr><td class="p-4 font-bold">Phonetic</td><td class="p-4">Fitted to local pronunciation</td><td class="p-4 font-mono font-semibold text-rust">manager → menedzher</td></tr>
+                                    <tr><td class="p-4 font-bold">Morphological</td><td class="p-4">Gets native suffixes and endings</td><td class="p-4 font-mono font-semibold text-rust">computer-ler, like-nut'</td></tr>
+                                    <tr><td class="p-4 font-bold">Semantic</td><td class="p-4">Meaning narrows or shifts</td><td class="p-4 font-mono font-semibold text-rust">printer (any printing device)</td></tr>
+                                    <tr><td class="p-4 font-bold">Calque</td><td class="p-4">Translated literally</td><td class="p-4 font-mono font-semibold text-rust">brainstorm → mozgovoy shturm</td></tr>
+                                    <tr><td class="p-4 font-bold">Hybrid</td><td class="p-4">English root joined to a native word</td><td class="p-4 font-mono font-semibold text-rust">online sabaq (online lesson)</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                num: 6,
+                tag: "SLIDE 6 · THEORY",
+                subtitle: "Russian and Kazakh take different paths",
+                html: `
+                    <div class="space-y-6">
+                        <div>
+                            <div class="text-sm font-bold uppercase tracking-widest text-rust mb-1">THEORY</div>
+                            <h3 class="font-serif text-3xl sm:text-5xl font-bold text-navy">Russian and Kazakh take different paths</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="p-6 sm:p-8 rounded-3xl bg-white border-2 border-navy flex flex-col justify-between shadow-sm">
+                                <div>
+                                    <h4 class="font-serif text-2xl sm:text-3xl font-bold text-navy mb-2">Russian</h4>
+                                    <p class="text-sm sm:text-base text-navy/70 mb-4">Centuries of borrowing from Dutch, French and German made Russian open to English.</p>
+                                    <ul class="text-sm sm:text-base space-y-2.5 mb-6">
+                                        <li>• Takes words directly, often unchanged</li>
+                                        <li>• Quickly builds Russian verbs and adjectives from them: <b>laiknut', khaipovy</b></li>
+                                        <li>• Youth slang mixes freely, called "Runglish"</li>
+                                        <li>• Debate: purists against those who see natural growth</li>
+                                    </ul>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-4 py-1.5 rounded-full bg-sand text-sm font-bold">menedzher</span>
+                                    <span class="px-4 py-1.5 rounded-full bg-sand text-sm font-bold">laiknut'</span>
+                                    <span class="px-4 py-1.5 rounded-full bg-sand text-sm font-bold">kreativny</span>
+                                    <span class="px-4 py-1.5 rounded-full bg-sand text-sm font-bold">dedlain</span>
+                                </div>
+                            </div>
+                            <div class="p-6 sm:p-8 rounded-3xl bg-white border-2 border-rust flex flex-col justify-between shadow-sm">
+                                <div>
+                                    <h4 class="font-serif text-2xl sm:text-3xl font-bold text-rust mb-2">Kazakh</h4>
+                                    <p class="text-sm sm:text-base text-navy/70 mb-4">For a long time Kazakh received English words through Russian; now it borrows directly.</p>
+                                    <ul class="text-sm sm:text-base space-y-2.5 mb-6">
+                                        <li>• Adds Kazakh suffixes to English roots: <b>computer-ler, online-da</b></li>
+                                        <li>• Follows Kazakh vowel harmony and sound rules</li>
+                                        <li>• Language policy creates native terms</li>
+                                        <li>• Tension with efforts to strengthen Kazakh</li>
+                                    </ul>
+                                </div>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-4 py-1.5 rounded-full bg-rust text-cream text-sm font-bold">galamtor (internet)</span>
+                                    <span class="px-4 py-1.5 rounded-full bg-rust text-cream text-sm font-bold">tyshqan (mouse)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                num: 7,
+                tag: "SLIDE 7 · THEORY",
+                subtitle: "Four forces spread anglicisms",
+                html: `
+                    <div class="space-y-8">
+                        <div>
+                            <div class="text-sm font-bold uppercase tracking-widest text-rust mb-1">THEORY</div>
+                            <h3 class="font-serif text-3xl sm:text-5xl font-bold text-navy">Four forces spread anglicisms</h3>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                            <div class="p-6 rounded-3xl bg-white border-2 border-sandDark flex flex-col justify-between shadow-sm">
+                                <div>
+                                    <div class="text-sm font-bold text-rust uppercase tracking-wider">Globalization</div>
+                                    <p class="text-sm sm:text-base text-navy/80 my-4 leading-relaxed">English is the shared language of business, science and travel, so its words travel with it</p>
+                                </div>
+                                <div class="text-xs sm:text-sm font-mono bg-cream p-3.5 rounded-xl text-navy font-bold border border-sand">business, marketing, brand</div>
+                            </div>
+                            <div class="p-6 rounded-3xl bg-white border-2 border-sandDark flex flex-col justify-between shadow-sm">
+                                <div>
+                                    <div class="text-sm font-bold text-rust uppercase tracking-wider">IT sector</div>
+                                    <p class="text-sm sm:text-base text-navy/80 my-4 leading-relaxed">New technology arrives with English names before a native term exists</p>
+                                </div>
+                                <div class="text-xs sm:text-sm font-mono bg-cream p-3.5 rounded-xl text-navy font-bold border border-sand">login, update, browser, software</div>
+                            </div>
+                            <div class="p-6 rounded-3xl bg-white border-2 border-sandDark flex flex-col justify-between shadow-sm">
+                                <div>
+                                    <div class="text-sm font-bold text-rust uppercase tracking-wider">Social media</div>
+                                    <p class="text-sm sm:text-base text-navy/80 my-4 leading-relaxed">Feeds, games and memes spread a new word to millions in a few days</p>
+                                </div>
+                                <div class="text-xs sm:text-sm font-mono bg-cream p-3.5 rounded-xl text-navy font-bold border border-sand">like, hashtag, stream, cringe</div>
+                            </div>
+                            <div class="p-6 rounded-3xl bg-white border-2 border-sandDark flex flex-col justify-between shadow-sm">
+                                <div>
+                                    <div class="text-sm font-bold text-rust uppercase tracking-wider">Youth</div>
+                                    <p class="text-sm sm:text-base text-navy/80 my-4 leading-relaxed">Young people use English words to sound modern and to feel part of a group</p>
+                                </div>
+                                <div class="text-xs sm:text-sm font-mono bg-cream p-3.5 rounded-xl text-navy font-bold border border-sand">skill, hype, vibe, chill</div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                num: 8,
+                tag: "SLIDE 8 · PRACTICE",
+                subtitle: "The survey",
+                html: `
+                    <div class="space-y-8">
+                        <div>
+                            <div class="text-sm font-bold uppercase tracking-widest text-rust mb-1">PRACTICE</div>
+                            <h3 class="font-serif text-3xl sm:text-5xl font-bold text-navy">The survey</h3>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-stretch">
+                            <div class="md:col-span-5 p-8 sm:p-10 rounded-3xl bg-navy text-cream text-center flex flex-col justify-center space-y-4 shadow-lg">
+                                <div class="font-serif text-6xl sm:text-7xl font-bold text-rustLight">20</div>
+                                <div class="text-lg sm:text-xl font-bold">people answered, most of them students aged 15–17</div>
+                                <div class="text-xs sm:text-sm text-cream/75 pt-4 border-t border-cream/15 leading-relaxed">
+                                    Google Forms · bilingual, Kazakh and Russian · anonymous · 30 October – 2 November 2026
+                                </div>
+                            </div>
+                            <div class="md:col-span-7 bg-white p-7 sm:p-9 rounded-3xl border-2 border-sandDark flex flex-col justify-center shadow-sm">
+                                <div class="text-sm font-bold uppercase tracking-wider text-rust mb-4">WHAT I ASKED</div>
+                                <ul class="text-base sm:text-lg space-y-2.5 text-navy/90 font-medium">
+                                    <li>• Age and language spoken at home</li>
+                                    <li>• How often they use English words</li>
+                                    <li>• Where: social media, games, school, friends</li>
+                                    <li>• Which anglicisms they use most</li>
+                                    <li>• Do anglicisms enrich or harm the language?</li>
+                                    <li>• Should they be replaced with native words?</li>
+                                    <li>• Why people use them</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                num: 9,
+                tag: "SLIDE 9 · SURVEY RESULTS",
+                subtitle: "What the answers show (17 respondents)",
+                html: `
+                    <div class="space-y-8">
+                        <div>
+                            <div class="text-sm font-bold uppercase tracking-widest text-rust mb-1">SURVEY RESULTS · 17 RESPONDENTS</div>
+                            <h3 class="font-serif text-3xl sm:text-5xl font-bold text-navy">What the answers show</h3>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                            <div class="p-6 sm:p-8 rounded-3xl bg-white border-2 border-navy text-center shadow-sm">
+                                <div class="font-serif text-5xl sm:text-6xl font-bold text-navy">65%</div>
+                                <p class="text-sm sm:text-base font-bold mt-3 text-navy">use English words in speech at least sometimes</p>
+                                <p class="text-xs sm:text-sm text-navy/60 mt-2">11 of 17 · only 2 people use them often</p>
+                            </div>
+                            <div class="p-6 sm:p-8 rounded-3xl bg-white border-2 border-navy text-center shadow-sm">
+                                <div class="font-serif text-5xl sm:text-6xl font-bold text-rust">41%</div>
+                                <p class="text-sm sm:text-base font-bold mt-3 text-navy">believe anglicisms enrich the language</p>
+                                <p class="text-xs sm:text-sm text-navy/60 mt-2">41% see no effect · 18% think they harm it</p>
+                            </div>
+                            <div class="p-6 sm:p-8 rounded-3xl bg-white border-2 border-rust text-center shadow-sm">
+                                <div class="font-serif text-5xl sm:text-6xl font-bold text-navy">47%</div>
+                                <p class="text-sm sm:text-base font-bold mt-3 text-navy">would replace them only where a native word exists</p>
+                                <p class="text-xs sm:text-sm text-navy/60 mt-2">35% say no · 18% say yes</p>
+                            </div>
+                        </div>
+                        <div class="p-5 rounded-2xl bg-white border-2 border-sandDark text-sm sm:text-base flex flex-wrap items-center justify-between gap-4 shadow-sm">
+                            <span><b>Where:</b> social media 65% · study 65% · games 59%</span>
+                            <span><b>Why:</b> habit 41% · shorter 29%</span>
+                            <span><b>Most named:</b> like, hello, what, idk, maybe, yes, no</span>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                num: 10,
+                tag: "SLIDE 10 · VOCABULARY",
+                subtitle: "Native words we already have",
+                html: `
+                    <div class="space-y-5">
+                        <div>
+                            <div class="text-sm font-bold uppercase tracking-widest text-rust mb-1">VOCABULARY</div>
+                            <h3 class="font-serif text-3xl sm:text-4xl font-bold text-navy">Native words we already have</h3>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse text-sm sm:text-base bg-white rounded-3xl overflow-hidden border-2 border-sandDark shadow-sm">
+                                <thead>
+                                    <tr class="bg-navy text-cream">
+                                        <th class="p-3 sm:p-3.5">Anglicism</th>
+                                        <th class="p-3 sm:p-3.5">Kazakh</th>
+                                        <th class="p-3 sm:p-3.5">Russian</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-sand">
+                                    <tr><td class="px-4 py-2.5 font-bold text-rust">like</td><td class="px-4 py-2.5 font-medium">ұнату белгісі</td><td class="px-4 py-2.5 font-medium">отметка «нравится»</td></tr>
+                                    <tr><td class="px-4 py-2.5 font-bold text-rust">deadline</td><td class="px-4 py-2.5 font-medium">соңғы мерзім</td><td class="px-4 py-2.5 font-medium">крайний срок</td></tr>
+                                    <tr><td class="px-4 py-2.5 font-bold text-rust">cringe</td><td class="px-4 py-2.5 font-medium">ұят, ыңғайсыздық</td><td class="px-4 py-2.5 font-medium">стыд, неловкость</td></tr>
+                                    <tr><td class="px-4 py-2.5 font-bold text-rust">feedback</td><td class="px-4 py-2.5 font-medium">кері байланыс</td><td class="px-4 py-2.5 font-medium">обратная связь</td></tr>
+                                    <tr><td class="px-4 py-2.5 font-bold text-rust">hype</td><td class="px-4 py-2.5 font-medium">шу, дүрбелең</td><td class="px-4 py-2.5 font-medium">шумиха, ажиотаж</td></tr>
+                                    <tr><td class="px-4 py-2.5 font-bold text-rust">user</td><td class="px-4 py-2.5 font-medium">пайдаланушы</td><td class="px-4 py-2.5 font-medium">пользователь</td></tr>
+                                    <tr><td class="px-4 py-2.5 font-bold text-rust">skill</td><td class="px-4 py-2.5 font-medium">дағды</td><td class="px-4 py-2.5 font-medium">навык</td></tr>
+                                    <tr><td class="px-4 py-2.5 font-bold text-rust">content</td><td class="px-4 py-2.5 font-medium">мазмұн</td><td class="px-4 py-2.5 font-medium">содержимое</td></tr>
+                                    <tr><td class="px-4 py-2.5 font-bold text-rust">stream</td><td class="px-4 py-2.5 font-medium">тікелей эфир</td><td class="px-4 py-2.5 font-medium">прямая трансляция</td></tr>
+                                    <tr><td class="px-4 py-2.5 font-bold text-rust">gadget</td><td class="px-4 py-2.5 font-medium">құрылғы</td><td class="px-4 py-2.5 font-medium">устройство</td></tr>
+                                    <tr><td class="px-4 py-2.5 font-bold text-rust">online</td><td class="px-4 py-2.5 font-medium">желіде</td><td class="px-4 py-2.5 font-medium">в сети</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                num: 11,
+                tag: "SLIDE 11 · ANALYSIS",
+                subtitle: "SWOT: the two sides of anglicisms",
+                html: `
+                    <div class="space-y-6">
+                        <div>
+                            <div class="text-sm font-bold uppercase tracking-widest text-rust mb-1">ANALYSIS</div>
+                            <h3 class="font-serif text-3xl sm:text-5xl font-bold text-navy">SWOT: the two sides of anglicisms</h3>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 text-sm sm:text-base">
+                            <div class="p-6 rounded-3xl bg-white border-l-8 border-emerald-700 shadow-sm">
+                                <b class="text-emerald-900 text-lg sm:text-xl block mb-2.5">Strengths</b>
+                                <ul class="space-y-2 text-navy/85">
+                                    <li>• Richer vocabulary for new ideas and technology</li>
+                                    <li>• Faster, shorter talk in IT and business</li>
+                                    <li>• Easier contact with the global community</li>
+                                </ul>
+                            </div>
+                            <div class="p-6 rounded-3xl bg-white border-l-8 border-amber-700 shadow-sm">
+                                <b class="text-amber-900 text-lg sm:text-xl block mb-2.5">Weaknesses</b>
+                                <ul class="space-y-2 text-navy/85">
+                                    <li>• Native words fall out of use</li>
+                                    <li>• Older people may not understand them</li>
+                                    <li>• Mixed speech sounds careless in formal settings</li>
+                                </ul>
+                            </div>
+                            <div class="p-6 rounded-3xl bg-white border-l-8 border-sky-700 shadow-sm">
+                                <b class="text-sky-900 text-lg sm:text-xl block mb-2.5">Opportunities</b>
+                                <ul class="space-y-2 text-navy/85">
+                                    <li>• Easier entry into global science and IT</li>
+                                    <li>• New school lessons on how language changes</li>
+                                    <li>• Stronger English skills for students</li>
+                                </ul>
+                            </div>
+                            <div class="p-6 rounded-3xl bg-white border-l-8 border-rust shadow-sm">
+                                <b class="text-rust text-lg sm:text-xl block mb-2.5">Threats</b>
+                                <ul class="space-y-2 text-navy/85">
+                                    <li>• Loss of cultural and language identity</li>
+                                    <li>• Dependence on English for every new term</li>
+                                    <li>• Native terminology stops developing</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                num: 12,
+                tag: "SLIDE 12 · RECOMMENDATIONS",
+                subtitle: "Use English words consciously",
+                html: `
+                    <div class="space-y-8">
+                        <div>
+                            <div class="text-sm font-bold uppercase tracking-widest text-rust mb-1">RECOMMENDATIONS</div>
+                            <h3 class="font-serif text-3xl sm:text-5xl font-bold text-navy">Use English words consciously</h3>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-sm sm:text-base">
+                            <div class="p-6 sm:p-8 rounded-3xl bg-white border-2 border-sandDark shadow-sm">
+                                <div class="font-serif font-bold text-xl sm:text-2xl text-navy mb-4">Schools</div>
+                                <ul class="space-y-2.5 text-navy/85">
+                                    <li>• Teach the native word next to the anglicism</li>
+                                    <li>• Run language clubs and debates</li>
+                                    <li>• A "word of the week" in Kazakh and Russian</li>
+                                    <li>• Discuss survey results in lessons</li>
+                                </ul>
+                            </div>
+                            <div class="p-6 sm:p-8 rounded-3xl bg-white border-2 border-rust shadow-sm">
+                                <div class="font-serif font-bold text-xl sm:text-2xl text-rust mb-4">Media</div>
+                                <ul class="space-y-2.5 text-navy/85">
+                                    <li>• Prefer native words where they exist</li>
+                                    <li>• Explain a new term the first time it appears</li>
+                                    <li>• Avoid needless English in official news</li>
+                                    <li>• Promote native terms like <b>galamtor</b></li>
+                                </ul>
+                            </div>
+                            <div class="p-6 sm:p-8 rounded-3xl bg-white border-2 border-sandDark shadow-sm">
+                                <div class="font-serif font-bold text-xl sm:text-2xl text-navy mb-4">Families</div>
+                                <ul class="space-y-2.5 text-navy/85">
+                                    <li>• Talk about new words at home</li>
+                                    <li>• Read books in the native language</li>
+                                    <li>• Explain native words to younger children</li>
+                                    <li>• Speak the native language every day</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                num: 13,
+                tag: "SLIDE 13 · CONCLUSION",
+                subtitle: "Anglicisms are here to stay. The real question is balance.",
+                html: `
+                    <div class="text-center space-y-10 py-8">
+                        <div class="text-sm font-bold uppercase tracking-widest text-rust">CONCLUSION</div>
+                        <h3 class="font-serif text-4xl sm:text-6xl font-bold text-navy max-w-4xl mx-auto leading-tight">
+                            Anglicisms are here to stay. The real question is <span class="text-rust underline">balance</span>.
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-5xl mx-auto text-base sm:text-lg pt-4">
+                            <div class="p-6 sm:p-8 rounded-3xl bg-white border-2 border-sandDark font-bold flex items-center justify-center shadow-sm">They make our languages modern and fast</div>
+                            <div class="p-6 sm:p-8 rounded-3xl bg-white border-2 border-sandDark font-bold flex items-center justify-center shadow-sm">Overuse pushes out native words</div>
+                            <div class="p-6 sm:p-8 rounded-3xl bg-navy text-cream font-bold flex items-center justify-center shadow-md">Knowing both keeps the language alive</div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                num: 14,
+                tag: "SLIDE 14 · REFERENCES",
+                subtitle: "Thank you! Questions?",
+                html: `
+                    <div class="space-y-6">
+                        <div class="flex flex-wrap items-center justify-between gap-4">
+                            <div>
+                                <h3 class="font-serif text-3xl sm:text-5xl font-bold text-navy">Thank you! <span class="text-rust">Questions?</span></h3>
+                            </div>
+                            <span class="text-sm font-bold uppercase tracking-widest text-rust">REFERENCES</span>
+                        </div>
+                        <ul class="text-sm sm:text-lg space-y-3.5 text-navy/90 bg-white p-7 sm:p-9 rounded-3xl border-2 border-sandDark shadow-sm">
+                            <li>• <b>Weinreich, U.</b> <i>Languages in Contact.</i> New York, 1953.</li>
+                            <li>• <b>Haugen, E.</b> "The Analysis of Linguistic Borrowing." <i>Language</i>, 1950.</li>
+                            <li>• <b>Akishev, T.</b> <i>Morphosemantic Integration of -ING Anglicisms into Russian and Kazakh.</i> University of Mississippi, 2023.</li>
+                            <li>• <b>Beisenova, M. et al.</b> "Communicative and Pragmatic Functioning of Anglicisms in Kazakhstani News Feeds." <i>Eurasian Journal of Applied Linguistics</i>, 2025.</li>
+                            <li>• <b>Zhussubalina, Zh., Tleuberdiyev, B.</b> "Lexical and Semantic Function of Anglicisms in Kazakh Media Text." <i>Yasawi University Bulletin</i>, 2022.</li>
+                        </ul>
+                    </div>
+                `
+            }
+        ];
+
+        let currentSlideIndex = 0;
+
+        function renderSlideDots() {
+            const bar = document.getElementById('slide-dots-bar');
+            bar.innerHTML = presentationSlides.map((s, idx) => `
+                <button onclick="goToSlide(${idx})" 
+                    class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl text-xs sm:text-sm font-bold transition-all shrink-0 flex items-center justify-center ${idx === currentSlideIndex ? 'bg-rust text-cream shadow-md scale-105' : 'bg-cream text-navy hover:bg-sandDark/60'}">
+                    ${s.num}
+                </button>
+            `).join('');
+        }
+
+        function renderCurrentSlide() {
+            const s = presentationSlides[currentSlideIndex];
+            document.getElementById('slideCounterBadge').textContent = `${s.num} / ${presentationSlides.length}`;
+            document.getElementById('slideTagBadge').textContent = s.tag;
+            document.getElementById('slideSubtitleTop').textContent = s.subtitle;
+            document.getElementById('slideStageContent').innerHTML = s.html;
+
+            const pct = ((currentSlideIndex + 1) / presentationSlides.length) * 100;
+            const prog = document.getElementById('slideProgressBar');
+            if (prog) prog.style.width = `${pct}%`;
+
+            renderSlideDots();
+        }
+
+        function changeSlide(delta) {
+            currentSlideIndex = (currentSlideIndex + delta + presentationSlides.length) % presentationSlides.length;
+            renderCurrentSlide();
+        }
+
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            renderCurrentSlide();
+        }
+
+        function togglePresentationFullscreen() {
+            const frame = document.getElementById('presentation-window-frame');
+            if (!document.fullscreenElement) {
+                if (frame.requestFullscreen) frame.requestFullscreen();
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+            }
+        }
+
+        // ---------------------------------------------------------------------
+        // 3. SLIDE 10 NATIVE WORDS TRAINER (FLASHCARDS + QUIZ IN ENGLISH)
+        // ---------------------------------------------------------------------
+        const slide10Vocab = [
+            { eng: "like", kz: "ұнату белгісі", ru: "отметка «нравится»" },
+            { eng: "deadline", kz: "соңғы мерзім", ru: "крайний срок" },
+            { eng: "cringe", kz: "ұят, ыңғайсыздық", ru: "стыд, неловкость" },
+            { eng: "feedback", kz: "кері байланыс", ru: "обратная связь" },
+            { eng: "hype", kz: "шу, дүрбелең", ru: "шумиха, ажиотаж" },
+            { eng: "user", kz: "пайдаланушы", ru: "пользователь" },
+            { eng: "skill", kz: "дағды", ru: "навык" },
+            { eng: "content", kz: "мазмұн", ru: "содержимое" },
+            { eng: "stream", kz: "тікелей эфир", ru: "прямая трансляция" },
+            { eng: "gadget", kz: "құрылғы", ru: "устройство" },
+            { eng: "online", kz: "желіде", ru: "в сети" }
+        ];
+
+        let allFlipped = false;
+
+        function renderFlashcards() {
+            const grid = document.getElementById('flashcards-grid');
+            grid.innerHTML = slide10Vocab.map((item, idx) => `
+                <div onclick="this.querySelector('.flashcard-inner').classList.toggle('rotate-y-180')" 
+                     class="perspective-1000 h-44 cursor-pointer group">
+                    <div class="flashcard-inner relative w-full h-full transform-style-3d rounded-2xl shadow-sm">
+                        <!-- Front: Anglicism -->
+                        <div class="absolute inset-0 backface-hidden bg-white border-2 border-navy rounded-2xl p-5 flex flex-col justify-between group-hover:border-rust transition-all">
+                            <div class="flex items-center justify-between text-xs text-navy/50 font-bold">
+                                <span>ANGLICISM #${idx + 1}</span>
+                                <span class="text-rust">Click to flip ↻</span>
+                            </div>
+                            <div class="text-center my-auto">
+                                <span class="pill-tag ${idx % 2 === 0 ? 'pill-navy' : 'pill-rust'} text-lg font-bold">${item.eng}</span>
+                            </div>
+                            <div class="text-[11px] text-center text-navy/60">What are the Kazakh &amp; Russian equivalents?</div>
+                        </div>
+                        <!-- Back: Native KZ & RU -->
+                        <div class="absolute inset-0 backface-hidden rotate-y-180 bg-navy text-cream border-2 border-rust rounded-2xl p-4 flex flex-col justify-center space-y-2">
+                            <div class="text-xs font-bold uppercase text-rustLight border-b border-cream/15 pb-1">${item.eng} — Native Words:</div>
+                            <div>
+                                <span class="text-[10px] uppercase text-cream/60 block">Kazakh (KZ):</span>
+                                <span class="font-bold text-sm text-white">${item.kz}</span>
+                            </div>
+                            <div>
+                                <span class="text-[10px] uppercase text-cream/60 block">Russian (RU):</span>
+                                <span class="font-bold text-sm text-white">${item.ru}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function flipAllFlashcards() {
+            allFlipped = !allFlipped;
+            document.querySelectorAll('.flashcard-inner').forEach(el => {
+                if (allFlipped) el.classList.add('rotate-y-180');
+                else el.classList.remove('rotate-y-180');
+            });
+        }
+
+        function switchTrainerMode(mode) {
+            const fcView = document.getElementById('trainer-flashcards-view');
+            const qzView = document.getElementById('trainer-quiz-view');
+            const btnFc = document.getElementById('btn-mode-flashcards');
+            const btnQz = document.getElementById('btn-mode-quiz');
+            if (mode === 'flashcards') {
+                fcView.classList.remove('hidden');
+                qzView.classList.add('hidden');
+                btnFc.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-navy text-cream transition-all';
+                btnQz.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-navy hover:bg-sand/60 transition-all';
+            } else {
+                fcView.classList.add('hidden');
+                qzView.classList.remove('hidden');
+                btnQz.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-navy text-cream transition-all';
+                btnFc.className = 'px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-navy hover:bg-sand/60 transition-all';
+                renderQuizQuestion();
+            }
+        }
+
+        let quizIdx = 0;
+        let quizScore = 0;
+
+        function renderQuizQuestion() {
+            const current = slide10Vocab[quizIdx];
+            document.getElementById('quiz-progress-text').textContent = `Question ${quizIdx + 1} of ${slide10Vocab.length}`;
+            document.getElementById('quiz-target-word').textContent = current.eng;
+            document.getElementById('quiz-feedback-msg').classList.add('hidden');
+            document.getElementById('quiz-next-btn').classList.add('hidden');
+
+            // Pick 3 distractors
+            const others = slide10Vocab.filter((_, i) => i !== quizIdx).sort(() => 0.5 - Math.random()).slice(0, 3);
+            const options = [current, ...others].sort(() => 0.5 - Math.random());
+
+            document.getElementById('quiz-options-list').innerHTML = options.map(opt => `
+                <button onclick="checkQuizAnswer('${opt.eng}')" class="quiz-opt-btn p-4 rounded-2xl border-2 border-sand hover:border-navy text-left transition-all bg-cream/60">
+                    <div class="text-xs font-bold text-rust">KZ: ${opt.kz}</div>
+                    <div class="text-sm font-bold text-navy mt-0.5">RU: ${opt.ru}</div>
+                </button>
+            `).join('');
+        }
+
+        function checkQuizAnswer(selectedEng) {
+            const current = slide10Vocab[quizIdx];
+            const msgBox = document.getElementById('quiz-feedback-msg');
+            msgBox.classList.remove('hidden');
+
+            document.querySelectorAll('.quiz-opt-btn').forEach(b => b.disabled = true);
+
+            if (selectedEng === current.eng) {
+                quizScore++;
+                document.getElementById('quiz-score').textContent = quizScore;
+                msgBox.className = 'mt-5 p-4 rounded-2xl text-sm font-bold bg-emerald-900 text-white';
+                msgBox.textContent = `✓ Correct! "${current.eng}" corresponds to "${current.kz}" (Kazakh) and "${current.ru}" (Russian).`;
+            } else {
+                msgBox.className = 'mt-5 p-4 rounded-2xl text-sm font-bold bg-rust text-white';
+                msgBox.textContent = `✗ Not quite! The native equivalents for "${current.eng}" are "${current.kz}" (KZ) and "${current.ru}" (RU).`;
+            }
+            document.getElementById('quiz-next-btn').classList.remove('hidden');
+        }
+
+        function nextQuizQuestion() {
+            quizIdx = (quizIdx + 1) % slide10Vocab.length;
+            renderQuizQuestion();
+        }
+
+        function resetQuiz() {
+            quizIdx = 0;
+            quizScore = 0;
+            document.getElementById('quiz-score').textContent = '0';
+            renderQuizQuestion();
+        }
+
+        function swapTrainerAndDashboardOrder() {
+            const trainer = document.getElementById('combined-trainer-block');
+            const survey = document.getElementById('combined-survey-block');
+            if (trainer.classList.contains('order-1')) {
+                trainer.classList.replace('order-1', 'order-2');
+                survey.classList.replace('order-2', 'order-1');
+            } else {
+                trainer.classList.replace('order-2', 'order-1');
+                survey.classList.replace('order-1', 'order-2');
+            }
+        }
+
+        // ---------------------------------------------------------------------
+        // 4. TAB 2: 12-DAY RESEARCH DIARY ROUTE (100% ENGLISH + CUSTOM SVG)
+        // ---------------------------------------------------------------------
+        const researchDiaryDays = [
+            {
+                day: 1,
+                category: "theory",
+                phase: "Literature Review",
+                taskEN: "Conduct a preliminary literature review on the influence of globalization on language.",
+                methodEN: "Analyze existing research papers and articles.",
+                svg: `<svg viewBox="0 0 240 130" class="w-full h-32">
+                    <rect width="240" height="130" rx="16" fill="#FAF6F0"/>
+                    <circle cx="120" cy="65" r="42" fill="#E4DFD3" stroke="#132232" stroke-width="2.5"/>
+                    <ellipse cx="120" cy="65" rx="20" ry="42" fill="none" stroke="#132232" stroke-width="1.8"/>
+                    <line x1="78" y1="65" x2="162" y2="65" stroke="#132232" stroke-width="1.8"/>
+                    <rect x="42" y="34" width="46" height="18" rx="9" fill="#B84A24"/>
+                    <text x="65" y="46" text-anchor="middle" fill="#FAF6F0" font-size="9" font-weight="bold">EN → KZ</text>
+                    <rect x="150" y="78" width="48" height="18" rx="9" fill="#132232"/>
+                    <text x="174" y="90" text-anchor="middle" fill="#FAF6F0" font-size="9" font-weight="bold">EN → RU</text>
+                    <circle cx="145" cy="48" r="14" fill="#FAF6F0" stroke="#B84A24" stroke-width="3"/>
+                    <line x1="155" y1="58" x2="168" y2="71" stroke="#B84A24" stroke-width="3.5" stroke-linecap="round"/>
+                </svg>`
+            },
+            {
+                day: 2,
+                category: "theory",
+                phase: "IT Sector Lexicon",
+                taskEN: "Identify key Anglicisms used in the Russian and Kazakh languages within the IT sector.",
+                methodEN: "Compile a list from IT publications and forums.",
+                svg: `<svg viewBox="0 0 240 130" class="w-full h-32">
+                    <rect width="240" height="130" rx="16" fill="#FAF6F0"/>
+                    <rect x="55" y="22" width="130" height="76" rx="8" fill="#132232"/>
+                    <rect x="63" y="30" width="114" height="60" rx="4" fill="#1E344B"/>
+                    <text x="72" y="50" fill="#B84A24" font-family="monospace" font-size="11" font-weight="bold">&lt;software/&gt;</text>
+                    <text x="72" y="68" fill="#FAF6F0" font-family="monospace" font-size="10">login · browser</text>
+                    <text x="72" y="83" fill="#E4DFD3" font-family="monospace" font-size="9">network · user</text>
+                    <path d="M40 98 H200 L210 108 H30 Z" fill="#B84A24"/>
+                </svg>`
+            },
+            {
+                day: 3,
+                category: "theory",
+                phase: "Historical Context",
+                taskEN: "Investigate the historical context of Anglicisms in Russian and Kazakh.",
+                methodEN: "Study linguistic history documents.",
+                svg: `<svg viewBox="0 0 240 130" class="w-full h-32">
+                    <rect width="240" height="130" rx="16" fill="#FAF6F0"/>
+                    <line x1="35" y1="65" x2="205" y2="65" stroke="#132232" stroke-width="3" stroke-dasharray="5 4"/>
+                    <circle cx="60" cy="65" r="14" fill="#E4DFD3" stroke="#132232" stroke-width="2.5"/>
+                    <text x="60" y="69" text-anchor="middle" font-size="9" font-weight="bold" fill="#132232">18th c.</text>
+                    <circle cx="120" cy="65" r="14" fill="#132232"/>
+                    <text x="120" y="69" text-anchor="middle" font-size="9" font-weight="bold" fill="#FAF6F0">20th c.</text>
+                    <circle cx="180" cy="65" r="16" fill="#B84A24"/>
+                    <text x="180" y="69" text-anchor="middle" font-size="9" font-weight="bold" fill="#FAF6F0">2026</text>
+                    <text x="60" y="98" text-anchor="middle" font-size="9" fill="#132232">Dutch/French</text>
+                    <text x="180" y="98" text-anchor="middle" font-size="9" font-weight="bold" fill="#B84A24">Direct IT</text>
+                </svg>`
+            },
+            {
+                day: 4,
+                category: "theory",
+                phase: "Native Vocabulary",
+                taskEN: "Assess the impact of Anglicisms on the native vocabulary of both languages.",
+                methodEN: "Conduct comparative analysis of language changes.",
+                svg: `<svg viewBox="0 0 240 130" class="w-full h-32">
+                    <rect width="240" height="130" rx="16" fill="#FAF6F0"/>
+                    <polygon points="120,28 134,105 106,105" fill="#132232"/>
+                    <line x1="55" y1="52" x2="185" y2="52" stroke="#B84A24" stroke-width="3.5" stroke-linecap="round"/>
+                    <rect x="32" y="58" width="56" height="24" rx="12" fill="#132232"/>
+                    <text x="60" y="74" text-anchor="middle" fill="#FAF6F0" font-size="9" font-weight="bold">deadline</text>
+                    <rect x="148" y="58" width="66" height="24" rx="12" fill="#B84A24"/>
+                    <text x="181" y="74" text-anchor="middle" fill="#FAF6F0" font-size="8" font-weight="bold">соңғы мерзім</text>
+                </svg>`
+            },
+            {
+                day: 5,
+                category: "theory",
+                phase: "Purity Debates",
+                taskEN: "Analyze debates and discussions regarding language purity and preservation.",
+                methodEN: "Review scholarly debates and articles.",
+                svg: `<svg viewBox="0 0 240 130" class="w-full h-32">
+                    <rect width="240" height="130" rx="16" fill="#FAF6F0"/>
+                    <rect x="30" y="32" width="82" height="44" rx="14" fill="#132232"/>
+                    <text x="71" y="52" text-anchor="middle" fill="#FAF6F0" font-size="9" font-weight="bold">Modern &amp; Fast</text>
+                    <text x="71" y="65" text-anchor="middle" fill="#E4DFD3" font-size="8">Enrichment</text>
+                    <rect x="128" y="48" width="82" height="44" rx="14" fill="#B84A24"/>
+                    <text x="169" y="68" text-anchor="middle" fill="#FAF6F0" font-size="9" font-weight="bold">Native Purity</text>
+                    <text x="169" y="81" text-anchor="middle" fill="#FAF6F0" font-size="8">Identity</text>
+                </svg>`
+            },
+            {
+                day: 6,
+                category: "empirical",
+                phase: "Expert Interviews",
+                taskEN: "Gather qualitative data through interviews with linguists and language experts.",
+                methodEN: "Design and conduct structured interviews.",
+                svg: `<svg viewBox="0 0 240 130" class="w-full h-32">
+                    <rect width="240" height="130" rx="16" fill="#FAF6F0"/>
+                    <rect x="106" y="25" width="28" height="48" rx="14" fill="#B84A24" stroke="#132232" stroke-width="2.5"/>
+                    <path d="M96 52 A24 24 0 0 0 144 52" fill="none" stroke="#132232" stroke-width="3"/>
+                    <line x1="120" y1="76" x2="120" y2="102" stroke="#132232" stroke-width="3"/>
+                    <line x1="98" y1="102" x2="142" y2="102" stroke="#132232" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M45 62 Q55 40 65 62 T85 62" fill="none" stroke="#B84A24" stroke-width="2.5"/>
+                    <path d="M155 62 Q165 40 175 62 T195 62" fill="none" stroke="#B84A24" stroke-width="2.5"/>
+                </svg>`
+            },
+            {
+                day: 7,
+                category: "empirical",
+                phase: "Globalization Role",
+                taskEN: "Evaluate the role of globalization in the spread of Anglicisms.",
+                methodEN: "Use case studies and statistical data.",
+                svg: `<svg viewBox="0 0 240 130" class="w-full h-32">
+                    <rect width="240" height="130" rx="16" fill="#FAF6F0"/>
+                    <line x1="60" y1="85" x2="115" y2="40" stroke="#132232" stroke-width="2.5"/>
+                    <line x1="115" y1="40" x2="180" y2="75" stroke="#132232" stroke-width="2.5"/>
+                    <line x1="60" y1="85" x2="180" y2="75" stroke="#B84A24" stroke-width="2" stroke-dasharray="4 3"/>
+                    <circle cx="60" cy="85" r="14" fill="#132232"/>
+                    <circle cx="115" cy="40" r="16" fill="#B84A24"/>
+                    <circle cx="180" cy="75" r="14" fill="#132232"/>
+                    <text x="115" y="44" text-anchor="middle" fill="#FAF6F0" font-size="8" font-weight="bold">GLOBAL</text>
+                </svg>`
+            },
+            {
+                day: 8,
+                category: "empirical",
+                phase: "Language Policy",
+                taskEN: "Review policies and regulations regarding language use in official communications in both countries.",
+                methodEN: "Analyze government documents and policies.",
+                svg: `<svg viewBox="0 0 240 130" class="w-full h-32">
+                    <rect width="240" height="130" rx="16" fill="#FAF6F0"/>
+                    <rect x="68" y="24" width="104" height="82" rx="8" fill="#FFFFFF" stroke="#132232" stroke-width="2.5"/>
+                    <line x1="84" y1="44" x2="156" y2="44" stroke="#132232" stroke-width="2.5"/>
+                    <line x1="84" y1="60" x2="156" y2="60" stroke="#B84A24" stroke-width="2.5"/>
+                    <line x1="84" y1="76" x2="136" y2="76" stroke="#132232" stroke-width="2"/>
+                    <circle cx="152" cy="84" r="11" fill="#B84A24"/>
+                </svg>`
+            },
+            {
+                day: 9,
+                category: "empirical",
+                phase: "Speaker Survey",
+                taskEN: "Explore the perceptions of speakers about the use of Anglicisms.",
+                methodEN: "Distribute and analyze surveys.",
+                svg: `<svg viewBox="0 0 240 130" class="w-full h-32">
+                    <rect width="240" height="130" rx="16" fill="#FAF6F0"/>
+                    <rect x="50" y="70" width="24" height="36" rx="4" fill="#E4DFD3" stroke="#132232" stroke-width="2"/>
+                    <rect x="90" y="36" width="24" height="70" rx="4" fill="#B84A24"/>
+                    <rect x="130" y="46" width="24" height="60" rx="4" fill="#132232"/>
+                    <rect x="170" y="60" width="24" height="46" rx="4" fill="#132232"/>
+                    <text x="102" y="30" text-anchor="middle" fill="#B84A24" font-size="10" font-weight="bold">65%</text>
+                    <text x="142" y="40" text-anchor="middle" fill="#132232" font-size="10" font-weight="bold">47%</text>
+                </svg>`
+            },
+            {
+                day: 10,
+                category: "synthesis",
+                phase: "Synthesis & SWOT",
+                taskEN: "Synthesize findings to identify patterns and implications for language development.",
+                methodEN: "Integrate data from previous tasks.",
+                svg: `<svg viewBox="0 0 240 130" class="w-full h-32">
+                    <rect width="240" height="130" rx="16" fill="#FAF6F0"/>
+                    <rect x="64" y="24" width="52" height="38" rx="8" fill="#132232"/>
+                    <rect x="124" y="24" width="52" height="38" rx="8" fill="#B84A24"/>
+                    <rect x="64" y="68" width="52" height="38" rx="8" fill="#E4DFD3" stroke="#132232" stroke-width="2"/>
+                    <rect x="124" y="68" width="52" height="38" rx="8" fill="#132232"/>
+                    <text x="90" y="47" text-anchor="middle" fill="#FAF6F0" font-size="11" font-weight="bold">S</text>
+                    <text x="150" y="47" text-anchor="middle" fill="#FAF6F0" font-size="11" font-weight="bold">W</text>
+                    <text x="90" y="91" text-anchor="middle" fill="#132232" font-size="11" font-weight="bold">O</text>
+                    <text x="150" y="91" text-anchor="middle" fill="#FAF6F0" font-size="11" font-weight="bold">T</text>
+                </svg>`
+            },
+            {
+                day: 11,
+                category: "synthesis",
+                phase: "Draft Report",
+                taskEN: "Prepare a draft report summarizing the research findings and conclusions.",
+                methodEN: "Write and organize a comprehensive draft.",
+                svg: `<svg viewBox="0 0 240 130" class="w-full h-32">
+                    <rect width="240" height="130" rx="16" fill="#FAF6F0"/>
+                    <rect x="75" y="20" width="90" height="90" rx="8" fill="#FFFFFF" stroke="#132232" stroke-width="2.5"/>
+                    <rect x="88" y="34" width="45" height="10" rx="5" fill="#B84A24"/>
+                    <line x1="88" y1="56" x2="152" y2="56" stroke="#132232" stroke-width="2"/>
+                    <line x1="88" y1="70" x2="152" y2="70" stroke="#132232" stroke-width="2"/>
+                    <line x1="88" y1="84" x2="132" y2="84" stroke="#132232" stroke-width="2"/>
+                </svg>`
+            },
+            {
+                day: 12,
+                category: "synthesis",
+                phase: "Final Revision",
+                taskEN: "Review and revise the draft report based on feedback and further analysis.",
+                methodEN: "Edit and improve report clarity and coherence.",
+                svg: `<svg viewBox="0 0 240 130" class="w-full h-32">
+                    <rect width="240" height="130" rx="16" fill="#FAF6F0"/>
+                    <circle cx="120" cy="65" r="38" fill="#132232" stroke="#B84A24" stroke-width="4"/>
+                    <path d="M104 65 L115 76 L138 52" fill="none" stroke="#FAF6F0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>`
+            }
+        ];
+
+        let currentRouteDay = 1;
+        let currentDiaryFilter = 'all';
+        let showSupervisorSignatures = true;
+
+        function renderDiaryRoute() {
+            // Render 12 top progress nodes
+            const nodesBar = document.getElementById('diary-route-nodes');
+            nodesBar.innerHTML = researchDiaryDays.map(d => `
+                <button onclick="selectDiaryDay(${d.day})" 
+                    class="p-2 rounded-xl border-2 text-center transition-all ${d.day === currentRouteDay ? 'bg-rust text-cream border-rust shadow-md scale-105' : 'bg-cream text-navy border-sandDark hover:border-navy'}">
+                    <div class="text-[10px] font-bold uppercase opacity-75">Day ${d.day}</div>
+                    <div class="text-xs font-extrabold truncate">${d.phase}</div>
+                </button>
+            `).join('');
+
+            const filteredDays = currentDiaryFilter === 'all'
+                ? researchDiaryDays
+                : researchDiaryDays.filter(d => d.category === currentDiaryFilter);
+
+            // Render cards with custom generated SVG illustrations in English
+            const container = document.getElementById('diary-cards-container');
+            container.innerHTML = filteredDays.map(d => {
+                const isActive = d.day === currentRouteDay;
+                return `
+                <div id="diary-card-${d.day}" onclick="selectDiaryDay(${d.day})"
+                     class="bg-white rounded-3xl p-5 border-2 transition-all cursor-pointer flex flex-col justify-between ${isActive ? 'route-card-active ring-2 ring-rust/30' : 'border-sandDark hover:border-navy'}">
+                    <div>
+                        <!-- Card Header -->
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="px-3 py-1 rounded-full ${isActive ? 'bg-rust text-cream' : 'bg-navy text-cream'} text-xs font-bold">
+                                    Day ${d.day}
+                                </span>
+                                <span class="text-xs font-bold text-rust uppercase tracking-wider">${d.phase}</span>
+                            </div>
+                            <span class="text-[11px] font-semibold text-navy/50">Step ${d.day} of 12</span>
+                        </div>
+
+                        <!-- Generated SVG Illustration for this Day -->
+                        <div class="rounded-2xl overflow-hidden border border-sand mb-4">
+                            ${d.svg}
+                        </div>
+
+                        <!-- Task Description -->
+                        <div class="space-y-1.5">
+                            <div class="text-[11px] font-bold uppercase tracking-wider text-navy/50">Task Description:</div>
+                            <p class="text-sm font-bold text-navy leading-snug">${d.taskEN}</p>
+                        </div>
+                    </div>
+
+                    <!-- Research Method & Supervisor Signature Footer -->
+                    <div class="mt-4 pt-3 border-t border-sand space-y-2.5">
+                        <div class="bg-cream p-2.5 rounded-xl">
+                            <span class="text-[10px] font-bold uppercase text-rust block">Research Methods:</span>
+                            <span class="text-xs font-semibold text-navy">${d.methodEN}</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs pt-1">
+                            <span class="text-navy/60 font-medium">Supervisor’s Signature:</span>
+                            ${showSupervisorSignatures ? `
+                                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-950/10 text-emerald-900 font-bold text-[11px]">
+                                    ✓ Signed &amp; Verified
+                                </span>
+                            ` : `
+                                <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-sand text-navy/60 font-semibold text-[11px]">
+                                    Pending review
+                                </span>
+                            `}
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+
+            document.getElementById('current-route-day-label').textContent = currentRouteDay;
+        }
+
+        function selectDiaryDay(dayNum) {
+            currentRouteDay = dayNum;
+            renderDiaryRoute();
+            const card = document.getElementById(`diary-card-${dayNum}`);
+            if (card) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
+        function stepDiaryRoute(delta) {
+            currentRouteDay = ((currentRouteDay - 1 + delta + 12) % 12) + 1;
+            if (currentDiaryFilter !== 'all') {
+                currentDiaryFilter = 'all';
+                updatePhaseFilterButtons();
+            }
+            selectDiaryDay(currentRouteDay);
+        }
+
+        function filterDiaryPhase(phase) {
+            currentDiaryFilter = phase;
+            updatePhaseFilterButtons();
+            renderDiaryRoute();
+        }
+
+        function updatePhaseFilterButtons() {
+            ['all', 'theory', 'empirical', 'synthesis'].forEach(p => {
+                const btn = document.getElementById('phase-btn-' + p);
+                if (!btn) return;
+                if (p === currentDiaryFilter) {
+                    btn.className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-navy text-cream transition-all';
+                } else {
+                    btn.className = 'px-3 py-1.5 rounded-xl text-xs font-bold bg-sand text-navy hover:bg-sandDark transition-all';
+                }
+            });
+        }
+
+        function toggleAllSignatures() {
+            showSupervisorSignatures = !showSupervisorSignatures;
+            renderDiaryRoute();
+        }
+
+        // ---------------------------------------------------------------------
+        // 5. NAVIGATION TABS & LIVE JURY POLL IN ENGLISH
+        // ---------------------------------------------------------------------
+        function switchMainTab(tabId) {
+            document.querySelectorAll('.main-tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+
+            const tabs = ['tab-presentation', 'tab-diary', 'tab-dashboard'];
+            tabs.forEach(t => {
+                const btn = document.getElementById('btn-' + t);
+                if (t === tabId) {
+                    btn.className = 'tab-nav-btn flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap bg-navy text-cream shadow-sm';
+                } else {
+                    btn.className = 'tab-nav-btn flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap text-navy hover:bg-cream/60';
+                }
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            lucide.createIcons();
+        }
+
+        function voteJuryPoll(choice) {
+            const box = document.getElementById('jury-poll-result');
+            box.classList.remove('hidden');
+            if (choice === 'enrich') {
+                box.innerHTML = `<b>Your vote matches 41% of surveyed students!</b> Respondents noted that anglicisms make communication in IT, study, and business faster and more precise — provided speakers also remember their native equivalents.`;
+            } else if (choice === 'neutral') {
+                box.innerHTML = `<b>Your vote matches 41% of surveyed students!</b> Nearly half of the respondents see lexical borrowing as a natural process of global language contact that neither harms nor dramatically alters native speech.`;
+            } else {
+                box.innerHTML = `<b>Your concern is shared by 18% of surveyed students!</b> That is why Slide 12 recommends teaching native equivalents alongside anglicisms in schools, running language clubs, and promoting native terms like <i>galamtor</i> in media.`;
+            }
+        }
+
+        // Keyboard arrow navigation for the 14-slide deck
+        window.addEventListener('keydown', (e) => {
+            const presVisible = !document.getElementById('tab-presentation').classList.contains('hidden');
+            if (!presVisible) return;
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+        });
+
+        // Initialize everything on load
+        window.onload = function() {
+            renderHeroPills();
+            renderCurrentSlide();
+            renderFlashcards();
+            renderDiaryRoute();
+            lucide.createIcons();
+        };
+    </script>
+</body>
+</html>
