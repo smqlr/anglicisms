@@ -146,6 +146,37 @@
             font-weight: 600;
             padding: 1px 8px;
         }
+        /* Strict Display Flex Layout for Mobile Devices (< 768px) */
+        @media (max-width: 767px) {
+            .grid {
+                display: flex !important;
+                flex-direction: column !important;
+                width: 100% !important;
+            }
+            nav.grid,
+            #diary-route-nodes.grid,
+            .mobile-flex-row {
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+            }
+            nav.grid > button {
+                flex: 1 1 auto !important;
+                min-width: 30% !important;
+            }
+            #diary-route-nodes.grid > button {
+                flex: 1 1 calc(25% - 0.5rem) !important;
+                min-width: 68px !important;
+            }
+            #slideStageContent > div,
+            #tab3-sections-wrapper,
+            #combined-survey-block {
+                display: flex !important;
+                flex-direction: column !important;
+                width: 100% !important;
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-rust selection:text-white">
@@ -231,9 +262,33 @@
                             <i data-lucide="chevron-left" class="w-6 h-6 lg:w-7 lg:h-7"></i>
                         </button>
 
-                        <!-- Dynamic Slide Stage (Comfortable padding on mobile, wide on desktop) -->
+                        <!-- Dynamic Slide Stage (Pre-rendered Slide 1 for instant zero-lag first paint) -->
                         <div id="slideStageContent" class="w-full max-w-6xl mx-auto px-3.5 sm:px-20 lg:px-24 py-5 sm:py-12 overflow-x-hidden">
-                            <!-- Rendered dynamically by JS -->
+                            <div class="text-center space-y-5 sm:space-y-9 py-2 sm:py-6">
+                                <div class="flex flex-wrap justify-center gap-2 sm:gap-3.5 max-w-4xl mx-auto">
+                                    <span class="pill-tag pill-rust">like</span>
+                                    <span class="pill-tag pill-outline">cringe</span>
+                                    <span class="pill-tag pill-sand">content</span>
+                                    <span class="pill-tag pill-navy">deadline</span>
+                                    <span class="pill-tag pill-navy">feedback</span>
+                                    <span class="pill-tag pill-outline">hype</span>
+                                    <span class="pill-tag pill-navy">user</span>
+                                </div>
+                                <div class="py-3 sm:py-6 space-y-3 sm:space-y-4">
+                                    <div class="text-xs sm:text-base font-bold tracking-widest uppercase text-rust">RESEARCH PROJECT 2026</div>
+                                    <h3 class="font-serif text-3xl sm:text-6xl lg:text-7xl font-bold text-navy leading-tight">Anglicisms in Russian<br class="hidden sm:inline" /> and Kazakh</h3>
+                                    <p class="text-sm sm:text-2xl text-navy/75 max-w-3xl mx-auto pt-1 leading-relaxed">How globalization and the IT sector are changing the way we speak</p>
+                                </div>
+                                <div class="flex flex-wrap justify-center gap-2 sm:gap-3.5 max-w-4xl mx-auto pt-1">
+                                    <span class="pill-tag pill-navy">online</span>
+                                    <span class="pill-tag pill-navy">gadget</span>
+                                    <span class="pill-tag pill-sand">startup</span>
+                                    <span class="pill-tag pill-outline">hashtag</span>
+                                    <span class="pill-tag pill-sand">stream</span>
+                                    <span class="pill-tag pill-navy">manager</span>
+                                    <span class="pill-tag pill-rust">skill</span>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Right Arrow Button (Hidden on mobile so it never covers slide text) -->
@@ -251,13 +306,13 @@
                     <!-- Window Bottom Control Dock (Mobile-first layout) -->
                     <div class="px-3 sm:px-8 py-3 sm:py-4 bg-sand/70 border-t border-sandDark/50 flex flex-col sm:flex-row items-center justify-between gap-3">
                         
-                        <!-- Mobile Big Prev / Next Buttons (Full width on phones for easy thumb tapping) -->
-                        <div class="grid grid-cols-2 sm:flex items-center gap-2 w-full sm:w-auto order-1 sm:order-2 shrink-0">
-                            <button onclick="changeSlide(-1)" class="px-3.5 py-2.5 sm:py-2 rounded-xl bg-cream border-2 border-navy/20 active:bg-sand text-navy font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all">
+                        <!-- Mobile Big Prev / Next Buttons (Full width flex row on phones) -->
+                        <div class="mobile-flex-row flex items-center gap-2 w-full sm:w-auto order-1 sm:order-2 shrink-0">
+                            <button onclick="changeSlide(-1)" class="flex-1 sm:flex-initial px-3.5 py-2.5 sm:py-2 rounded-xl bg-cream border-2 border-navy/20 active:bg-sand text-navy font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all">
                                 <i data-lucide="arrow-left" class="w-4 h-4"></i>
                                 <span>Prev Slide</span>
                             </button>
-                            <button onclick="changeSlide(1)" class="px-4 py-2.5 sm:py-2 rounded-xl bg-navy active:bg-rust hover:bg-rust text-cream font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all shadow-sm">
+                            <button onclick="changeSlide(1)" class="flex-1 sm:flex-initial px-4 py-2.5 sm:py-2 rounded-xl bg-navy active:bg-rust hover:bg-rust text-cream font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition-all shadow-sm">
                                 <span>Next Slide</span>
                                 <i data-lucide="arrow-right" class="w-4 h-4"></i>
                             </button>
@@ -388,11 +443,11 @@
                     </div>
 
                     <!-- Guided Stepper Controls -->
-                    <div class="grid grid-cols-2 sm:flex items-center gap-2 w-full sm:w-auto">
-                        <button onclick="stepDiaryRoute(-1)" class="px-3 py-2.5 rounded-xl sm:rounded-full border-2 border-navy text-navy font-bold text-xs hover:bg-sand transition-all text-center">
+                    <div class="mobile-flex-row flex items-center gap-2 w-full sm:w-auto">
+                        <button onclick="stepDiaryRoute(-1)" class="flex-1 sm:flex-initial px-3 py-2.5 rounded-xl sm:rounded-full border-2 border-navy text-navy font-bold text-xs hover:bg-sand transition-all text-center">
                             ← Prev Day
                         </button>
-                        <button onclick="stepDiaryRoute(1)" class="px-4 py-2.5 rounded-xl sm:rounded-full bg-rust text-cream font-bold text-xs sm:text-sm hover:bg-rustLight transition-all shadow-sm flex items-center justify-center gap-1.5">
+                        <button onclick="stepDiaryRoute(1)" class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl sm:rounded-full bg-rust text-cream font-bold text-xs sm:text-sm hover:bg-rustLight transition-all shadow-sm flex items-center justify-center gap-1.5">
                             <i data-lucide="footprints" class="w-4 h-4 shrink-0"></i>
                             <span>Day <span id="current-route-day-label">1</span>/12 →</span>
                         </button>
@@ -485,11 +540,11 @@
                         </div>
 
                         <!-- Mode Switcher: Flashcards vs Quiz -->
-                        <div class="grid grid-cols-2 sm:inline-flex bg-cream p-1 rounded-xl sm:rounded-2xl border-2 border-navy w-full sm:w-auto">
-                            <button onclick="switchTrainerMode('flashcards')" id="btn-mode-flashcards" class="px-3 sm:px-4 py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold bg-navy text-cream transition-all text-center">
+                        <div class="mobile-flex-row flex bg-cream p-1 rounded-xl sm:rounded-2xl border-2 border-navy w-full sm:w-auto">
+                            <button onclick="switchTrainerMode('flashcards')" id="btn-mode-flashcards" class="flex-1 sm:flex-initial px-3 sm:px-4 py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold bg-navy text-cream transition-all text-center">
                                 1. 3D Flashcards (11)
                             </button>
-                            <button onclick="switchTrainerMode('quiz')" id="btn-mode-quiz" class="px-3 sm:px-4 py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold text-navy hover:bg-sand/60 transition-all text-center">
+                            <button onclick="switchTrainerMode('quiz')" id="btn-mode-quiz" class="flex-1 sm:flex-initial px-3 sm:px-4 py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold text-navy hover:bg-sand/60 transition-all text-center">
                                 2. Blitz Quiz (11)
                             </button>
                         </div>
@@ -573,13 +628,6 @@
                                 </span>
                                 <span class="px-3 py-1.5 rounded-xl bg-cream/10 border border-cream/15 text-xs font-semibold">
                                     👥 Respondents: <b class="text-white">Ages 15–17 (17–20 students)</b>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- TOP KPI SUMMARY CARDS (SLIDE 9) -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
                                 </span>
                             </div>
                         </div>
@@ -850,6 +898,54 @@
     <!-- JAVASCRIPT: DATA & INTERACTIVITY (100% ENGLISH)                       -->
     <!-- ===================================================================== -->
     <script>
+        // ---------------------------------------------------------------------
+        // 1. SLIDE 2 FLOATING PILLS DATA (20 WORDS IN ENGLISH)
+        // ---------------------------------------------------------------------
+        const slide2Pills = [
+            { word: "like", style: "pill-rust", rotate: "-3deg", kz: "ұнату белгісі", ru: "отметка «нравится»", cat: "Morphological Adaptation · Social Media (#1 in Survey)", note: "Forms Russian verbs like 'laiknut'' and Kazakh phrases like 'laik basu' in daily social media communication." },
+            { word: "deadline", style: "pill-navy", rotate: "2deg", kz: "соңғы мерзім", ru: "крайний срок", cat: "Direct Borrowing · Study & Business", note: "Adopted directly to replace longer native multi-word expressions in school and workplace deadlines." },
+            { word: "cringe", style: "pill-outline", rotate: "-2deg", kz: "ұят, ыңғайсыздық", ru: "стыд, неловкость", cat: "Code-Switching · Youth Slang", note: "Slide 4 example: 'Bul óte cringe' — used by youth to express awkwardness or embarrassment." },
+            { word: "feedback", style: "pill-navy", rotate: "3deg", kz: "кері байланыс", ru: "обратная связь", cat: "Code-Switching · Business & Education", note: "Slide 4 example: 'Skin' feedback do pyatnitsy' — mixes an English noun into a Russian sentence." },
+            { word: "content", style: "pill-sand", rotate: "-2deg", kz: "мазмұн", ru: "содержимое", cat: "Direct Borrowing · Media & Social Networks", note: "Widely used by creators and media instead of native equivalents 'мазмұн' and 'содержимое'." },
+            { word: "user", style: "pill-navy", rotate: "3deg", kz: "пайдаланушы", ru: "пользователь", cat: "Direct Borrowing · IT Sector", note: "Core IT term integrated into everyday tech speech alongside native equivalents." },
+            { word: "stream", style: "pill-sand", rotate: "-3deg", kz: "тікелей эфир", ru: "прямая трансляция", cat: "Direct Borrowing · Gaming & Media (59%)", note: "One-syllable English loanword preferred by gamers and viewers for its brevity." },
+            { word: "skill", style: "pill-rust", rotate: "2deg", kz: "дағды", ru: "навык", cat: "Youth & Gaming Lexicon", note: "Spread through video games and career discussions ('soft skills', 'hard skills')." },
+            { word: "hype", style: "pill-outline", rotate: "-3deg", kz: "шу, дүрбелең", ru: "шумиха, ажиотаж", cat: "Morphological Adaptation · Social Media", note: "Quickly builds Russian adjectives ('khaipovy') and verbs ('khaipit'') in youth slang." },
+            { word: "gadget", style: "pill-navy", rotate: "3deg", kz: "құрылғы", ru: "устройство", cat: "Direct Borrowing · IT & Hardware", note: "Used as an umbrella term for smart portable electronic devices." },
+            { word: "startup", style: "pill-sand", rotate: "-2deg", kz: "бастапқы жоба", ru: "новый бизнес-проект", cat: "Direct Borrowing · Globalization & Business", note: "Entered both languages directly through international entrepreneurship and the IT sector." },
+            { word: "manager", style: "pill-navy", rotate: "3deg", kz: "басқарушы", ru: "управляющий (менеджер)", cat: "Phonetic Adaptation · Business", note: "Slide 5 example: phonetic adaptation where 'manager' becomes 'menedzher' to fit local pronunciation." },
+            { word: "online", style: "pill-navy", rotate: "-2deg", kz: "желіде", ru: "в сети", cat: "Hybrid Formation · Core Digital Term", note: "Slide 5 example: joins native words to create hybrid phrases like 'online sabaq' (online lesson)." },
+            { word: "selfie", style: "pill-rust", rotate: "3deg", kz: "селфи (өздік сурет)", ru: "автопортрет", cat: "Direct Borrowing · Social Media Culture", note: "Spread globally in days via smartphone cameras and social media feeds." },
+            { word: "hashtag", style: "pill-outline", rotate: "-3deg", kz: "хэштег (белгі)", ru: "тематическая метка", cat: "Direct Borrowing · Social Media", note: "Arrived with social platforms before a concise native single-word term existed." },
+            { word: "blogger", style: "pill-outline", rotate: "3deg", kz: "блогер (автор)", ru: "автор интернет-дневника", cat: "Morphological Adaptation · Digital Media", note: "Fully integrated into both Russian and Kazakh with native plural and case suffixes." },
+            { word: "lifehack", style: "pill-navy", rotate: "-2deg", kz: "пайдалы кеңес", ru: "полезный совет / хитрость", cat: "Compound Loanword · Youth & Media", note: "Used across short-form video platforms as a modern synonym for a practical tip." },
+            { word: "laptop", style: "pill-sand", rotate: "2deg", kz: "ықшам компьютер", ru: "портативный компьютер (ноутбук)", cat: "Direct Borrowing · IT Sector", note: "Borrowed alongside 'computer' (Kazakh plural: 'computer-ler')." },
+            { word: "influencer", style: "pill-navy", rotate: "-2deg", kz: "пікір көшбасшысы", ru: "лидер мнений", cat: "Direct Borrowing · Marketing & Media", note: "Replaces the longer three-word calque 'leader of public opinion' in media discourse." },
+            { word: "weekend", style: "pill-rust", rotate: "3deg", kz: "демалыс күндері", ru: "выходные дни", cat: "Direct Borrowing · Lifestyle & Media", note: "Used in urban media and lifestyle contexts alongside native words for days off." }
+        ];
+
+        function renderHeroPills() {
+            const container = document.getElementById('hero-pill-cloud');
+            if (!container) return;
+            container.innerHTML = slide2Pills.map((item, idx) => `
+                <button onclick="inspectPill(${idx})" 
+                    style="transform: rotate(${item.rotate})"
+                    class="pill-tag ${item.style}">
+                    ${item.word}
+                </button>
+            `).join('');
+        }
+
+        function inspectPill(index) {
+            const item = slide2Pills[index];
+            if (!item) return;
+            document.getElementById('insp-word').textContent = item.word;
+            document.getElementById('insp-category').textContent = item.cat;
+            document.getElementById('insp-kz').textContent = item.kz;
+            document.getElementById('insp-ru').textContent = item.ru;
+            document.getElementById('insp-note').textContent = item.note;
+        }
+
         // ---------------------------------------------------------------------
         // 2. ALL 14 SLIDES FOR THE STANDALONE PRESENTATION WINDOW (RESPONSIVE)
         // ---------------------------------------------------------------------
@@ -1935,14 +2031,22 @@
             }, { passive: true });
         }
 
-        // Initialize everything on load
-        window.onload = function() {
+        // Instant zero-lag initialization as soon as DOM is ready
+        function initApp() {
             renderHeroPills();
             renderCurrentSlide();
             renderFlashcards();
             renderDiaryRoute();
-            lucide.createIcons();
-        };
+            if (window.lucide) {
+                lucide.createIcons();
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initApp);
+        } else {
+            initApp();
+        }
     </script>
 </body>
 </html>
